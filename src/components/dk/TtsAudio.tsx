@@ -1,8 +1,8 @@
 "use client";
 
 // Listening audio via the browser SpeechSynthesis API — free, no Blob storage.
-// Reads the transcript in is-IS (Danish). Where speech synthesis is unavailable,
-// it gracefully falls back to showing the transcript.
+// Reads the transcript in Danish (da-DK, see ttsLang). Where speech synthesis is
+// unavailable, it gracefully falls back to showing the transcript.
 
 import { useEffect, useRef, useState } from "react";
 import { ttsLang } from "./shared";

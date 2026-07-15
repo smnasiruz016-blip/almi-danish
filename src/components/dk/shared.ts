@@ -28,9 +28,16 @@ export interface SubmitResult {
   correct: boolean;
 }
 
-/** The BCP-47 voice tag for listening audio — Danish (all tracks). */
+/**
+ * The BCP-47 voice tag for listening audio — Danish (all tracks).
+ *
+ * Was "is-IS" (Icelandic) until 2026-07-15: inherited unchanged when this product was
+ * forked from AlmiIcelandic, where is-IS was correct. Every Listening transcript was
+ * being read aloud in an Icelandic voice while the docstring said Danish. If you fork
+ * this product, change this line — nothing else can catch it.
+ */
 export function ttsLang(): string {
-  return "is-IS";
+  return "da-DK";
 }
 
 /** POST a graded/echoed attempt to the submit API. DB-optional, never throws. */
