@@ -22,7 +22,13 @@ export interface SeoHub { slug: string; name: string; region: string; profile: s
 
 export const UNIVERSITIES = universitiesJson as SeoUniversity[];
 export const ROLES = rolesJson as SeoRole[];
-export const COUNTRIES = countriesJson as SeoCountry[]; // origins only (Denmark excluded)
+// Origins only: 196 = the 197-country axis minus Denmark itself. Until 2026-07-15
+// this comment was false — Denmark WAS in the list, so the matrix advertised
+// "Study in Denmark from Denmark" — and Portugal was absent entirely, because this
+// file descends from almi-portuguese's copy, where dropping PT was correct (it was
+// the self) and simply never got undone here. Verified by decoding every flag to
+// ISO-3166; see scripts/seo/fork-hygiene-gate.mjs, which now fails on both.
+export const COUNTRIES = countriesJson as SeoCountry[];
 export const SUBJECTS = subjectsJson as SeoSubject[];
 export const HUBS = hubsJson as SeoHub[];
 
