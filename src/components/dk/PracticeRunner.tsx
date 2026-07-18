@@ -6,8 +6,8 @@
 // are framed as a "practice estimate" — never an official Directorate result.
 
 import { useState } from "react";
-import type { DanishSkill } from "@/lib/dk/types";
-import { skillReadout, readinessFromPct } from "@/lib/dk/grading";
+import type { DanishSkill, CefrLevel } from "@/lib/dk/types";
+import { goalReadout } from "@/lib/dk/grading";
 import { SKILL_LABELS } from "@/lib/dk/registry";
 import { ObjectiveTask } from "./ObjectiveTask";
 import { submitAttempt, type RunnerItem, type SubmitResult } from "./shared";
@@ -21,10 +21,12 @@ const READINESS_LABEL: Record<string, { text: string; cls: string }> = {
 export function PracticeRunner({
   examName,
   skill,
+  goalCefr,
   items,
 }: {
   examName: string;
   skill: DanishSkill;
+  goalCefr?: CefrLevel;
   items: RunnerItem[];
 }) {
   const [step, setStep] = useState(0);
@@ -68,8 +70,17 @@ export function PracticeRunner({
   if (done) {
     const points = results.reduce((s, r) => s + r.points, 0);
     const maxPoints = results.reduce((s, r) => s + r.maxPoints, 0);
-    const readout = skillReadout(skill, points, maxPoints);
-    const band = READINESS_LABEL[readout.readiness] ?? READINESS_LABEL.BELOW;
+    // Band readiness from AT-GOAL tasks only (results are in item order, so results[i]
+    // pairs with items[i]). A below-goal win can't inflate the goal band; a session
+    // with no at-goal tasks reports "no estimate yet", never 0%.
+    const scored = results.map((r, i) => ({
+      cefr: items[i]?.cefr,
+      points: r.points,
+      maxPoints: r.maxPoints,
+    }));
+    const goal = goalReadout(scored, goalCefr);
+    const band =
+      goal.readiness === null ? null : READINESS_LABEL[goal.readiness] ?? READINESS_LABEL.BELOW;
     return (
       <div className="space-y-5 rounded-2xl border border-almi-bg-peach bg-almi-paper p-6">
         <div>
@@ -81,13 +92,29 @@ export function PracticeRunner({
           </h2>
         </div>
         <div className="flex flex-wrap items-center gap-3">
-          <span className={`rounded-full px-3 py-1 text-sm font-semibold ${band.cls}`}>
-            {band.text}
-          </span>
-          <span className="text-sm text-almi-text-muted">
-            {readout.pct}% · readiness band {readinessFromPct(readout.pct)}
-          </span>
+          {band ? (
+            <>
+              <span className={`rounded-full px-3 py-1 text-sm font-semibold ${band.cls}`}>
+                {band.text}
+              </span>
+              <span className="text-sm text-almi-text-muted">
+                {goal.atGoalPct}% at CEFR {goal.goal} · from {goal.atGoalCount} at-goal task
+                {goal.atGoalCount === 1 ? "" : "s"}
+              </span>
+            </>
+          ) : (
+            <span className="text-sm text-almi-text-muted">
+              No {goalCefr ?? "goal-level"} readiness estimate yet — this set had no tasks at the goal level.
+            </span>
+          )}
         </div>
+        {goal.foundationalCount > 0 && (
+          <p className="text-xs text-almi-text-muted">
+            + {goal.foundationalCount} below-goal practice task
+            {goal.foundationalCount === 1 ? "" : "s"} (useful practice, not counted toward your{" "}
+            {goal.goal} readiness).
+          </p>
+        )}
         <p className="text-xs text-almi-text-muted">
           This is a practice estimate against the level&apos;s criteria, not an official SIRI or Ministry result.
         </p>

@@ -8,6 +8,8 @@
 import { READY_PCT, BORDERLINE_PCT } from "./registry";
 import type { ObjectiveAnswer, DanishTaskType, DanishSkill } from "./types";
 import { isObjectiveTask } from "./types";
+import { splitByLevel } from "@smnasiruz016-blip/almi-data";
+import type { CefrLevel, LevelScored } from "@smnasiruz016-blip/almi-data";
 
 export type Readiness = "CLEAR" | "BORDERLINE" | "BELOW";
 
@@ -118,4 +120,46 @@ export function aggregateReadout(readouts: SkillReadout[]): {
 /** True when this task type is auto-gradable (objective). */
 export function isObjectiveTaskType(t: DanishTaskType): boolean {
   return isObjectiveTask(t);
+}
+
+/**
+ * Goal-readiness for an exam, banded from AT-GOAL tasks ONLY (via almi-data's
+ * splitByLevel — the canonical level-crossing rule). A task's `cefr` decides where it
+ * sits vs the exam's `goalCefr`; `difficulty` (FOUNDATION/CORE/STRETCH) NEVER does.
+ *
+ * Honest edges:
+ *  - `atGoalPct === null` when the session served nothing at the goal → render
+ *    "no estimate yet", never 0% (0% would lie about the learner, not the session).
+ *  - foundational (below-goal) and above-goal tasks are reported as their own counts,
+ *    not folded into the band — an easy below-goal win can't inflate goal-readiness,
+ *    and a hard above-goal miss can't deflate it.
+ */
+export interface GoalReadout {
+  goal: CefrLevel | undefined;
+  atGoalPct: number | null;
+  readiness: Readiness | null;
+  atGoalCount: number;
+  foundationalCount: number;
+  aboveCount: number;
+  undeclaredCount: number;
+}
+
+export function goalReadout(
+  scored: readonly LevelScored[],
+  goal: CefrLevel | undefined,
+): GoalReadout {
+  const s = splitByLevel(scored, goal);
+  const atGoalPct =
+    s.atGoal.maxPoints > 0
+      ? Math.round((s.atGoal.points / s.atGoal.maxPoints) * 100)
+      : null;
+  return {
+    goal: s.goal,
+    atGoalPct,
+    readiness: atGoalPct === null ? null : readinessFromPct(atGoalPct),
+    atGoalCount: s.atGoal.count,
+    foundationalCount: s.foundational.count,
+    aboveCount: s.above.count,
+    undeclaredCount: s.undeclared,
+  };
 }

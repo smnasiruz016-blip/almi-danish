@@ -35,6 +35,13 @@ export type DanishTaskType =
 
 export type DanishDifficulty = "FOUNDATION" | "CORE" | "STRETCH";
 
+// The CEFR level a single task is PITCHED at — distinct from `difficulty`, which is a
+// FOUNDATION/CORE/STRETCH ladder *inside* an exam and crosses levels freely. Level is
+// what the goal-readiness band keys on (via almi-data's splitByLevel); difficulty is
+// only for ordering/variety. Optional: an untagged task is UNDECLARED and never
+// silently counted as at-goal. Re-exported CefrLevel from the canonical rule package.
+export type { CefrLevel } from "@smnasiruz016-blip/almi-data";
+
 export const OBJECTIVE_TASK_TYPES: DanishTaskType[] = [
   "MCQ_SINGLE",
   "MATCHING",

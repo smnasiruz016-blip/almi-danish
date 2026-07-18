@@ -1,7 +1,7 @@
 // Engine selftests — run with `npm run selftest:engine` (tsx).
 // Proves the per-skill readiness bands and objective grading are correct.
 
-import { gradeObjective, readinessFromPct, skillReadout, aggregateReadout } from "./grading";
+import { gradeObjective, readinessFromPct, skillReadout, aggregateReadout, goalReadout } from "./grading";
 
 let pass = 0;
 let fail = 0;
@@ -58,6 +58,37 @@ eq(skillReadout("READING", 8, 10).readiness, "CLEAR", "reading 80% clear");
     skillReadout("LISTENING", 8, 10),
   ]);
   eq(agg.allClear, true, "agg all clear");
+}
+
+// ---- goal-readiness bands from AT-GOAL tasks only (PD3 goal = B2) ----
+{
+  // A poor B2 (at-goal) result next to a perfect B1 (foundational) win.
+  // Blended, this is 13/20 = 65% (BORDERLINE) — inflated by the below-goal win.
+  // Goal-readiness must band the B2 tasks ONLY: 3/10 = 30% (BELOW).
+  const r = goalReadout(
+    [
+      { cefr: "B2", points: 3, maxPoints: 10 }, // at-goal, poor
+      { cefr: "B1", points: 10, maxPoints: 10 }, // foundational, perfect
+    ],
+    "B2",
+  );
+  eq(r.atGoalPct, 30, "goal atGoal only (not blended to 65)");
+  eq(r.readiness, "BELOW", "goal band BELOW from at-goal");
+  eq(r.foundationalCount, 1, "goal foundational counted separately");
+  eq(r.atGoalCount, 1, "goal at-goal count");
+}
+{
+  // No at-goal tasks served → no honest estimate (null), NEVER 0%.
+  const r = goalReadout([{ cefr: "B1", points: 2, maxPoints: 10 }], "B2");
+  eq(r.atGoalPct, null, "goal no-at-goal → null pct");
+  eq(r.readiness, null, "goal no-at-goal → null readiness");
+  eq(r.foundationalCount, 1, "goal only-foundational counted");
+}
+{
+  // Untagged task is UNDECLARED — never silently counted as at-goal.
+  const r = goalReadout([{ points: 5, maxPoints: 10 }], "B2");
+  eq(r.atGoalPct, null, "goal undeclared → null (not at-goal)");
+  eq(r.undeclaredCount, 1, "goal undeclared counted");
 }
 
 console.log(`\nAlmiDanish engine selftest: ${pass} passed, ${fail} failed`);

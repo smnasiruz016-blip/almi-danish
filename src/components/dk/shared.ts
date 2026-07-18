@@ -5,6 +5,7 @@ import type {
   DanishExam,
   DanishSkill,
   DanishTaskType,
+  CefrLevel,
   ObjectiveAnswer,
 } from "@/lib/dk/types";
 
@@ -14,6 +15,9 @@ export interface RunnerItem {
   exam: DanishExam;
   skill: DanishSkill;
   taskType: DanishTaskType;
+  /** CEFR level this task is pitched at — carried so the runner can band readiness
+   *  from at-goal tasks only, and the productive grader can judge at the right level. */
+  cefr?: CefrLevel;
   payload: unknown;
   answer: ObjectiveAnswer | null;
   maxPoints: number;
@@ -78,6 +82,9 @@ export async function gradeProductive(body: {
   exam: DanishExam;
   skill: DanishSkill;
   taskType: DanishTaskType;
+  /** The level THIS task is pitched at — the grade route judges the answer at this
+   *  level (via almi-data's levelInstruction), never at the exam's range label. */
+  cefr?: CefrLevel;
   title: string;
   prompt: string;
   criteria: string[];

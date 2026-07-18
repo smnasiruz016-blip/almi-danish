@@ -11,6 +11,7 @@ import type {
   KnowledgeExam,
   DanishSkill,
   LanguageSkill,
+  CefrLevel,
 } from "./types";
 
 export interface ExamMeta {
@@ -19,6 +20,11 @@ export interface ExamMeta {
   slug: string; // URL slug
   name: string; // display name (official Danish exam name)
   cefr: string; // CEFR level label, or "Knowledge test" for the MCQ tests
+  // The single CEFR level a learner's readiness for THIS exam is banded against —
+  // its verified at-goal standard. Distinct from `cefr` (a display string that may be
+  // a range). Absent when the exam has no single language pass level (the knowledge
+  // tests). Feeds almi-data's splitByLevel: only at-goal tasks count toward the band.
+  goalCefr?: CefrLevel;
   blurb: string; // one-line description
   skills: DanishSkill[];
   knowledge?: boolean; // true = society/citizenship MCQ test (single KNOWLEDGE module)
@@ -73,8 +79,8 @@ export const LANGUAGE_EXAMS: ExamMeta[] = [
     skills: ["READING", "LISTENING", "WRITING", "SPEAKING"], mockMinutes: 180,
   },
   {
-    exam: "PD3", track: "CITIZENSHIP", slug: "prove-i-dansk-3", name: "Prøve i Dansk 3", cefr: "B1–B2",
-    blurb: "The B1–B2 Danish exam commonly required for Danish citizenship — Reading, Written Presentation and Speaking.",
+    exam: "PD3", track: "CITIZENSHIP", slug: "prove-i-dansk-3", name: "Prøve i Dansk 3", cefr: "B2", goalCefr: "B2",
+    blurb: "The B2 Danish exam commonly required for Danish citizenship — Reading, Listening, Written Presentation and Speaking.",
     skills: ["READING", "LISTENING", "WRITING", "SPEAKING"], lead: true, mockMinutes: 240,
   },
   {
