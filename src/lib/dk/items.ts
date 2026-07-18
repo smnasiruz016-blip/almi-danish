@@ -14,6 +14,7 @@ import type {
   DanishSkill,
   DanishTaskType,
   DanishDifficulty,
+  CefrLevel,
   ObjectiveAnswer,
 } from "./types";
 
@@ -24,6 +25,9 @@ export interface DanishItemSeed {
   skill: DanishSkill;
   taskType: DanishTaskType;
   difficulty: DanishDifficulty;
+  /** The CEFR level this task is pitched at (optional). Feeds the goal-readiness band
+   *  and the level-aware AI grader. Absent = UNDECLARED (never counted as at-goal). */
+  cefr?: CefrLevel;
   title: string;
   prompt: string;
   payload: unknown;
