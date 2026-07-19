@@ -24,7 +24,7 @@
     "title": "Letter from the kommune",
     "prompt": "Read the letter and choose the correct answer.",
     "payload": {
-      "passage": "Kære Amina. Din datter Sara starter i børnehaven Solsikken den 1. august. Den første dag skal du møde klokken 9 sammen med hende. Tag gerne skiftetøj og en madpakke med. Hvis Sara er syg, skal du ringe til børnehaven inden klokken 8.",
+      "passage": "Kære Amina. Din datter Sara starter i børnehaven den 1. august. Den første dag skal du møde klokken 9 sammen med hende. Tag gerne skiftetøj og en madpakke med. Hvis Sara er syg, skal du ringe til børnehaven inden klokken 8.",
       "question": "Hvad skal Amina gøre, hvis Sara bliver syg?",
       "options": ["Sende en e-mail til kommunen", "Møde klokken 9 alligevel", "Ringe til børnehaven inden klokken 8", "Tage skiftetøj med"]
     },
