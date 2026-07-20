@@ -68,8 +68,13 @@
     "title": "The tax authority",
     "prompt": "Choose the correct answer.",
     "payload": {
-      "question": "What is the name of the Danish tax authority?",
-      "options": ["SKAT", "NAV", "SU", "ATP"]
+      "question": "What is the name of the Danish tax agency?",
+      "options": [
+        "Skattestyrelsen",
+        "Udbetaling Danmark",
+        "SU",
+        "ATP"
+      ]
     },
     "answer": { "type": "MCQ_SINGLE", "correctIndex": 0 },
     "maxPoints": 1
