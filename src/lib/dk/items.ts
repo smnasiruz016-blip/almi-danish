@@ -97,6 +97,83 @@ export function getItems(filter: {
   );
 }
 
+// ── SERVER-SIDE ITEM IDENTITY ───────────────────────────────────────────────
+// Items are bundle-served with NO database id, and that absence was the ROOT of this
+// product's grading P0: with nothing to re-load by, /api/dk/submit graded whatever
+// answer key the browser posted and /api/dk/grade took the CEFR level, title, prompt and
+// criteria off the request. An id has to exist before grading can be authoritative, so
+// it is the first fix rather than a later hardening step.
+//
+// The id hashes the FULL identifying tuple — track|exam|skill|title — because titles are
+// only unique within a surface. assertNoIdCollisions() proves that at build time; a
+// collision would make getItemById() return the WRONG item and grade a learner against
+// a different task's key, silently.
+
+/** Stable, content-derived id for a bundle item — the handle the client posts back.
+ *
+ *  ── WHY THE TUPLE IS WIDER HERE THAN IN THE SIBLINGS ──────────────────────────
+ *  Swiss, Dutch and Iceland hash track|exam|skill|title. That works there because their
+ *  titles happen to be unique within a surface. THIS BANK HAS THREE COLLISIONS, and the
+ *  collision gate caught them on its very first run, before any of this shipped:
+ *
+ *    GETTING_STARTED|PD1|SPEAKING|Talk about your family
+ *    GETTING_STARTED|PD1|SPEAKING|Ask for directions
+ *    UNIVERSITY|STUDIEPROVEN|WRITING|Summary of a research finding
+ *
+ *  Each pair is TWO GENUINELY DIFFERENT TASKS that happen to share a title — different
+ *  prompts, different criteria — not redundant copies, so the modules honestly hold 15
+ *  items and nothing needs deleting. But under a title-only id, getItemById() would
+ *  return whichever came first and could grade a learner against the OTHER task's
+ *  criteria. Silently, and plausibly.
+ *
+ *  Renaming three titles would also fix it and is the smaller diff, but it is a content
+ *  edit and content is frozen this pass. Hashing the TASK DEFINITION instead needs no
+ *  content change at all.
+ *
+ *  The hash deliberately excludes the answer key, the option list and anything the
+ *  de-game or structural re-key passes touch, so those passes do NOT churn item ids.
+ *  It does include prompt and criteria — so editing what a task ASKS mints a new id,
+ *  which is the correct behaviour: an attempt recorded against the old wording was an
+ *  attempt at a different task. */
+export function stableItemId(
+  it: Pick<DanishItemSeed, "track" | "exam" | "skill" | "title" | "prompt" | "taskType" | "payload">,
+): string {
+  const criteria = ((it.payload ?? {}) as { criteria?: unknown }).criteria;
+  const definition = [
+    it.track, it.exam, it.skill, it.taskType, it.title, it.prompt,
+    Array.isArray(criteria) ? criteria.join("¶") : "",
+  ].join("|");
+  return hashSeed(definition).toString(36);
+}
+
+/** Re-load the full item, INCLUDING its answer key, by its stable id — server-side only.
+ *  This is the function that makes grading authoritative: the route calls it instead of
+ *  believing the request. */
+export function getItemById(id: string): DanishItemSeed | undefined {
+  return allItems().find((it) => stableItemId(it) === id);
+}
+
+/**
+ * Build-time guard: no two items may share a stable id. A collision would grade a
+ * learner's answer against a DIFFERENT item's key, with no error and a plausible score.
+ *
+ * SEEN RED: duplicate a (track,exam,skill,title) tuple in any bundle and this throws.
+ */
+export function assertNoIdCollisions(): void {
+  const seen = new Map<string, string>();
+  for (const it of allItems()) {
+    const id = stableItemId(it);
+    const key = `${it.track}|${it.exam}|${it.skill}|${it.title}`;
+    const prior = seen.get(id);
+    if (prior) {
+      throw new Error(
+        `stableItemId collision: "${key}" and "${prior}" both hash to ${id} — grading would key against the wrong item`,
+      );
+    }
+    seen.set(id, key);
+  }
+}
+
 /**
  * Deterministic stable string hash → 32-bit int. Used as a fallback seed so the
  * pick is varied but reproducible without Math.random at module/build scope.

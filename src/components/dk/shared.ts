@@ -10,42 +10,64 @@ import type {
 } from "@/lib/dk/types";
 
 export interface RunnerItem {
+  /** Stable server id (hash of track|exam|skill|title). Posted back so the server
+   *  re-loads the item and grades against its OWN key — the answer never ships. */
+  id: string;
   title: string;
   prompt: string;
   exam: DanishExam;
   skill: DanishSkill;
   taskType: DanishTaskType;
   /** CEFR level this task is pitched at — carried so the runner can band readiness
-   *  from at-goal tasks only, and the productive grader can judge at the right level. */
+   *  from at-goal tasks only. It is NOT what the AI grader is judged against: that
+   *  level is read off the server-loaded item, because a level the client states is a
+   *  level the client chooses. */
   cefr?: CefrLevel;
   payload: unknown;
-  answer: ObjectiveAnswer | null;
   maxPoints: number;
+  // NO `answer` FIELD, AND THAT IS THE POINT.
+  //
+  // This interface used to carry `answer: ObjectiveAnswer | null`, so every practice
+  // page shipped its answer keys into the browser — readable in the page source before
+  // the learner had answered anything. The runner then posted that same key back to
+  // /api/dk/submit, which graded against it. The two halves were one defect: the key
+  // leaked BECAUSE the server needed the client to send it back, and the server trusted
+  // it BECAUSE it had no id to re-load by.
+  //
+  // `id` above replaces it. If you find yourself wanting `answer` here again, the thing
+  // you actually need is a server route that loads the item by that id.
 }
 
-export type ProductiveItem = Omit<RunnerItem, "answer" | "maxPoints">;
+/** The productive composer never had a key to carry; it now carries the id so the
+ *  grader can find the task itself. */
+export type ProductiveItem = Omit<RunnerItem, "maxPoints">;
 
 export interface SubmitResult {
   ok: boolean;
   points: number;
   maxPoints: number;
   correct: boolean;
+  /** The correct answer, disclosed by the PRACTICE route only, after the learner has
+   *  committed. It arrives in the response — it is no longer sitting in the page. */
+  answer?: ObjectiveAnswer | null;
 }
 
-/**
- * The BCP-47 voice tag for listening audio — Danish (all tracks).
- *
- * Was "is-IS" (Icelandic) until 2026-07-15: inherited unchanged when this product was
- * forked from AlmiIcelandic, where is-IS was correct. Every Listening transcript was
- * being read aloud in an Icelandic voice while the docstring said Danish. If you fork
- * this product, change this line — nothing else can catch it.
- */
+/** The BCP-47 voice tag for listening audio — Dutch (both tracks). */
 export function ttsLang(): string {
-  return "da-DK";
+  return "nl-NL";
 }
 
-/** POST a graded/echoed attempt to the submit API. DB-optional, never throws. */
-export async function submitAttempt(body: unknown): Promise<SubmitResult | null> {
+/** POST an attempt to the submit API. DB-optional, never throws.
+ *
+ *  The body is TYPED rather than `unknown`, deliberately. Under the old shape this
+ *  took `unknown` and the runner passed whatever it liked — which is how the answer key
+ *  ended up in the request without anything objecting. A named type here means adding a
+ *  task fact back to this call is a compile error, not a quiet regression. */
+export async function submitAttempt(body: {
+  itemId: string;
+  response: unknown;
+  selfScore?: number | string | null;
+}): Promise<SubmitResult | null> {
   try {
     const res = await fetch("/api/dk/submit", {
       method: "POST",
@@ -79,15 +101,15 @@ export type GradeOutcome =
  * self-rating flow. Never throws.
  */
 export async function gradeProductive(body: {
-  exam: DanishExam;
-  skill: DanishSkill;
-  taskType: DanishTaskType;
-  /** The level THIS task is pitched at — the grade route judges the answer at this
-   *  level (via almi-data's levelInstruction), never at the exam's range label. */
-  cefr?: CefrLevel;
-  title: string;
-  prompt: string;
-  criteria: string[];
+  /** Which task. The route re-loads it and reads the level, the criteria and the task
+   *  text off the AUTHORED item.
+   *
+   *  This used to be `{exam, skill, taskType, cefr, title, prompt, criteria, response}`
+   *  — the browser handing over the standard it was about to be marked against. Sending
+   *  `cefr: "A1"` for a B1 task returned a confident CLEAR against the easier level, and
+   *  a rewritten `criteria` array was accepted verbatim as "criteria the answer should
+   *  meet". Two fields now, and neither can describe the task. */
+  itemId: string;
   response: string;
 }): Promise<GradeOutcome> {
   try {

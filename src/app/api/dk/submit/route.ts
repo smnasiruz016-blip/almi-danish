@@ -1,32 +1,25 @@
-// Practice submit endpoint. Grades objective items deterministically via the
-// Danish engine and echoes productive self-ratings. DB persistence of attempts is
-// best-effort: bundled items have no DB id, so unless a resolvable itemId is
-// supplied we simply return the grade — this never 500s on an empty database.
+// PRACTICE submit endpoint. Server-authoritative: the item — and its answer key — is
+// re-loaded by id inside gradeAttempt() and graded against the SERVER key. The client
+// posts only { itemId, response, selfScore } and a client-supplied answer is never
+// trusted. On this PRACTICE path the correct answer IS returned, for the post-submit
+// per-option reveal; a mock route would run the same grader and withhold it. That split
+// is decided by which route runs, never by a client flag.
+//
+// WHAT THIS REPLACED, AND WHY IT WAS A P0. The route used to destructure `answer`
+// straight off the body and call `gradeObjective(answer, response)` — the browser sent
+// the key and the server marked against it, so any POST scored 100%. `maxPoints` came
+// off the body too, so the client set both the numerator and the denominator. `skill`
+// and `taskType` came off the body as well, which put the Pro gate in the caller's
+// hands: declaring a productive task as a free skill walked straight through it.
+//
+// All four now come from the server-loaded item. The client cannot state the standard,
+// only the answer.
 
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth";
-import { hasPaidAccess } from "@/lib/billing/plans";
-import { prisma } from "@/lib/prisma";
-import { gradeObjective } from "@/lib/dk/grading";
-import { isObjectiveTask, isFreeSkill } from "@/lib/dk/types";
-import type {
-  ObjectiveAnswer,
-  DanishSkill,
-  DanishTaskType,
-} from "@/lib/dk/types";
+import { gradeAttempt, type AttemptBody } from "@/lib/dk/grade-attempt";
 
 export const runtime = "nodejs";
-
-interface SubmitBody {
-  itemId?: string;
-  exam?: string;
-  skill?: DanishSkill;
-  taskType?: DanishTaskType;
-  answer?: ObjectiveAnswer | null;
-  maxPoints?: number;
-  response?: unknown;
-  selfScore?: number | string | null;
-}
 
 export async function POST(req: Request): Promise<NextResponse> {
   const user = await getCurrentUser();
@@ -34,65 +27,25 @@ export async function POST(req: Request): Promise<NextResponse> {
     return NextResponse.json({ ok: false, error: "Not authenticated" }, { status: 401 });
   }
 
-  let body: SubmitBody;
+  let body: AttemptBody;
   try {
-    body = (await req.json()) as SubmitBody;
+    body = (await req.json()) as AttemptBody;
   } catch {
     return NextResponse.json({ ok: false, error: "Invalid body" }, { status: 400 });
   }
 
-  const { itemId, skill, taskType, answer, response, selfScore } = body;
-  if (!taskType) {
-    return NextResponse.json({ ok: false, error: "Missing taskType" }, { status: 400 });
+  const r = await gradeAttempt(body, user);
+  if (!r.ok) {
+    return NextResponse.json({ ok: false, error: r.error }, { status: r.status });
   }
 
-  const objective = isObjectiveTask(taskType);
-  const productive = !objective || (skill !== undefined && !isFreeSkill(skill));
-
-  // Gate: productive / AI tasks require paid access (owner + comp bypass inside).
-  if (productive && !hasPaidAccess(user)) {
-    return NextResponse.json(
-      { ok: false, error: "Productive feedback is a Pro feature" },
-      { status: 402 },
-    );
-  }
-
-  let points = 0;
-  let maxPoints = typeof body.maxPoints === "number" ? body.maxPoints : 0;
-  let correct = false;
-  let readiness: string | null = null;
-
-  if (objective && answer) {
-    const graded = gradeObjective(answer, response);
-    points = graded.points;
-    maxPoints = graded.maxPoints;
-    correct = maxPoints > 0 && points === maxPoints;
-    readiness = correct ? "CLEAR" : "BELOW";
-  } else {
-    // Productive: nothing sensitive stored; echo the self-rating.
-    readiness = typeof selfScore === "string" ? selfScore : null;
-  }
-
-  // Best-effort persistence — only when a real DB item id is supplied. Any DB
-  // failure (missing item, empty database) is swallowed so grading still returns.
-  if (itemId) {
-    try {
-      await prisma.danishAttempt.create({
-        data: {
-          userId: user.id,
-          itemId,
-          status: objective ? "SCORED" : "EVALUATED",
-          response: (response ?? { selfScore: selfScore ?? null }) as object,
-          points: objective ? points : null,
-          maxPoints: objective ? maxPoints : null,
-          readiness,
-          submittedAt: new Date(),
-        },
-      });
-    } catch {
-      // ignore — attempts are optional this pass
-    }
-  }
-
-  return NextResponse.json({ ok: true, points, maxPoints, correct, selfScore: selfScore ?? null });
+  // PRACTICE reveal: disclose the correct answer AFTER the learner has committed theirs.
+  return NextResponse.json({
+    ok: true,
+    points: r.points,
+    maxPoints: r.maxPoints,
+    correct: r.correct,
+    selfScore: r.selfScore,
+    answer: r.correctAnswer,
+  });
 }

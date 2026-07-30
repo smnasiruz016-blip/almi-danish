@@ -10,9 +10,17 @@
     "payload": {
       "transcript": "Hej, jeg hedder Thomas. Jeg kommer fra Sverige, men jeg bor i Danmark nu.",
       "question": "Hvor kommer Thomas fra?",
-      "options": ["Danmark", "Sverige", "Norge", "Tyskland"]
+      "options": [
+        "Danmark",
+        "Sverige",
+        "Norge",
+        "Tyskland"
+      ]
     },
-    "answer": { "type": "MCQ_SINGLE", "correctIndex": 1 },
+    "answer": {
+      "type": "MCQ_SINGLE",
+      "correctIndex": 1
+    },
     "maxPoints": 1
   },
   {
@@ -26,9 +34,17 @@
     "payload": {
       "transcript": "Klokken er ni nu. Butikken åbner klokken ti.",
       "question": "Hvornår åbner butikken?",
-      "options": ["Klokken ni", "Klokken ti", "Klokken elleve", "Klokken otte"]
+      "options": [
+        "Klokken ni",
+        "Klokken elleve",
+        "Klokken ti",
+        "Klokken otte"
+      ]
     },
-    "answer": { "type": "MCQ_SINGLE", "correctIndex": 1 },
+    "answer": {
+      "type": "MCQ_SINGLE",
+      "correctIndex": 2
+    },
     "maxPoints": 1
   },
   {
@@ -42,9 +58,17 @@
     "payload": {
       "transcript": "Jeg vil gerne have en kop te og et stykke kage, tak.",
       "question": "Hvad bestiller personen?",
-      "options": ["Kaffe og brød", "Te og kage", "Vand og æg", "Øl og pizza"]
+      "options": [
+        "Te og kage",
+        "Kaffe og brød",
+        "Vand og æg",
+        "Øl og pizza"
+      ]
     },
-    "answer": { "type": "MCQ_SINGLE", "correctIndex": 1 },
+    "answer": {
+      "type": "MCQ_SINGLE",
+      "correctIndex": 0
+    },
     "maxPoints": 1
   },
   {
@@ -58,9 +82,17 @@
     "payload": {
       "transcript": "Toget til Odense kører fra spor tre klokken halv to.",
       "question": "Fra hvilket spor kører toget?",
-      "options": ["Spor et", "Spor to", "Spor tre", "Spor fire"]
+      "options": [
+        "Spor et",
+        "Spor to",
+        "Spor tre",
+        "Spor fire"
+      ]
     },
-    "answer": { "type": "MCQ_SINGLE", "correctIndex": 2 },
+    "answer": {
+      "type": "MCQ_SINGLE",
+      "correctIndex": 2
+    },
     "maxPoints": 1
   },
   {
@@ -74,9 +106,17 @@
     "payload": {
       "transcript": "Min bror hedder Mikkel. Han er ti år ældre end mig. Jeg er tyve år.",
       "question": "Hvor gammel er Mikkel?",
-      "options": ["Ti år", "Tyve år", "Tredive år", "Fyrre år"]
+      "options": [
+        "Ti år",
+        "Tyve år",
+        "Fyrre år",
+        "Tredive år"
+      ]
     },
-    "answer": { "type": "MCQ_SINGLE", "correctIndex": 2 },
+    "answer": {
+      "type": "MCQ_SINGLE",
+      "correctIndex": 3
+    },
     "maxPoints": 1
   },
   {
@@ -90,9 +130,17 @@
     "payload": {
       "transcript": "I weekenden besøger vi min mormor. Hun bor på landet.",
       "question": "Hvem besøger de i weekenden?",
-      "options": ["Mormor", "Farfar", "En ven", "Læreren"]
+      "options": [
+        "Mormor",
+        "Farfar",
+        "En ven",
+        "Læreren"
+      ]
     },
-    "answer": { "type": "MCQ_SINGLE", "correctIndex": 0 },
+    "answer": {
+      "type": "MCQ_SINGLE",
+      "correctIndex": 0
+    },
     "maxPoints": 1
   },
   {
@@ -106,9 +154,17 @@
     "payload": {
       "transcript": "Det bliver solrigt og varmt i morgen. Temperaturen bliver femogtyve grader.",
       "question": "Hvordan bliver vejret i morgen?",
-      "options": ["Regnfuldt", "Solrigt og varmt", "Koldt", "Snevejr"]
+      "options": [
+        "Regnfuldt",
+        "Solrigt og varmt",
+        "Koldt",
+        "Snevejr"
+      ]
     },
-    "answer": { "type": "MCQ_SINGLE", "correctIndex": 1 },
+    "answer": {
+      "type": "MCQ_SINGLE",
+      "correctIndex": 1
+    },
     "maxPoints": 1
   },
   {
@@ -122,9 +178,15 @@
     "payload": {
       "transcript": "Butikken har åbent fra mandag til fredag. I weekenden er der lukket.",
       "question": "Butikken er åben om lørdagen.",
-      "options": ["Rigtigt", "Forkert"]
+      "options": [
+        "Rigtigt",
+        "Forkert"
+      ]
     },
-    "answer": { "type": "TRUE_FALSE", "correctIndex": 1 },
+    "answer": {
+      "type": "TRUE_FALSE",
+      "correctIndex": 1
+    },
     "maxPoints": 1
   },
   {
@@ -138,9 +200,15 @@
     "payload": {
       "transcript": "Anna arbejder på et kontor. Hun starter klokken otte om morgenen.",
       "question": "Anna starter på arbejde klokken otte.",
-      "options": ["Rigtigt", "Forkert"]
+      "options": [
+        "Rigtigt",
+        "Forkert"
+      ]
     },
-    "answer": { "type": "TRUE_FALSE", "correctIndex": 0 },
+    "answer": {
+      "type": "TRUE_FALSE",
+      "correctIndex": 0
+    },
     "maxPoints": 1
   },
   {
@@ -154,9 +222,15 @@
     "payload": {
       "transcript": "Der er tre soveværelser i lejligheden og et stort køkken.",
       "question": "Lejligheden har to soveværelser.",
-      "options": ["Rigtigt", "Forkert"]
+      "options": [
+        "Rigtigt",
+        "Forkert"
+      ]
     },
-    "answer": { "type": "TRUE_FALSE", "correctIndex": 1 },
+    "answer": {
+      "type": "TRUE_FALSE",
+      "correctIndex": 1
+    },
     "maxPoints": 1
   },
   {
@@ -170,9 +244,15 @@
     "payload": {
       "transcript": "Bus nummer fem kører til centrum hvert tiende minut.",
       "question": "Bussen kører til centrum.",
-      "options": ["Rigtigt", "Forkert"]
+      "options": [
+        "Rigtigt",
+        "Forkert"
+      ]
     },
-    "answer": { "type": "TRUE_FALSE", "correctIndex": 0 },
+    "answer": {
+      "type": "TRUE_FALSE",
+      "correctIndex": 0
+    },
     "maxPoints": 1
   },
   {
@@ -186,10 +266,34 @@
     "payload": {
       "transcript": "Lars er kok. Sofie er lærer. Peter er buschauffør.",
       "instructions": "Match personen med jobbet.",
-      "left": ["Lars", "Sofie", "Peter"],
-      "right": ["lærer", "buschauffør", "kok"]
+      "left": [
+        "Lars",
+        "Sofie",
+        "Peter"
+      ],
+      "right": [
+        "buschauffør",
+        "kok",
+        "lærer"
+      ]
     },
-    "answer": { "type": "MATCHING", "pairs": [[0, 2], [1, 0], [2, 1]] },
+    "answer": {
+      "type": "MATCHING",
+      "pairs": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          0
+        ]
+      ]
+    },
     "maxPoints": 3
   },
   {
@@ -203,10 +307,34 @@
     "payload": {
       "transcript": "En kaffe koster femten kroner. En sandwich koster tredive kroner. Et æble koster fem kroner.",
       "instructions": "Match maden med prisen.",
-      "left": ["kaffe", "sandwich", "æble"],
-      "right": ["fem kroner", "femten kroner", "tredive kroner"]
+      "left": [
+        "kaffe",
+        "sandwich",
+        "æble"
+      ],
+      "right": [
+        "tredive kroner",
+        "fem kroner",
+        "femten kroner"
+      ]
     },
-    "answer": { "type": "MATCHING", "pairs": [[0, 1], [1, 2], [2, 0]] },
+    "answer": {
+      "type": "MATCHING",
+      "pairs": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ]
+      ]
+    },
     "maxPoints": 3
   },
   {
@@ -220,10 +348,34 @@
     "payload": {
       "transcript": "Middagen er klokken seks. Bussen kommer klokken fem. Filmen starter klokken syv.",
       "instructions": "Match begivenheden med tidspunktet.",
-      "left": ["Middag", "Bus", "Film"],
-      "right": ["Klokken fem", "Klokken seks", "Klokken syv"]
+      "left": [
+        "Middag",
+        "Bus",
+        "Film"
+      ],
+      "right": [
+        "Klokken seks",
+        "Klokken syv",
+        "Klokken fem"
+      ]
     },
-    "answer": { "type": "MATCHING", "pairs": [[0, 1], [1, 0], [2, 2]] },
+    "answer": {
+      "type": "MATCHING",
+      "pairs": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ]
+      ]
+    },
     "maxPoints": 3
   },
   {
@@ -237,10 +389,34 @@
     "payload": {
       "transcript": "Om mandagen regner det. Om tirsdagen er det solrigt. Om onsdagen sner det.",
       "instructions": "Match dagen med vejret.",
-      "left": ["mandag", "tirsdag", "onsdag"],
-      "right": ["solrigt", "sne", "regn"]
+      "left": [
+        "mandag",
+        "tirsdag",
+        "onsdag"
+      ],
+      "right": [
+        "sne",
+        "regn",
+        "solrigt"
+      ]
     },
-    "answer": { "type": "MATCHING", "pairs": [[0, 2], [1, 0], [2, 1]] },
+    "answer": {
+      "type": "MATCHING",
+      "pairs": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          0
+        ]
+      ]
+    },
     "maxPoints": 3
   }
 ]

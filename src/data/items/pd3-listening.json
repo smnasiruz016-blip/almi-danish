@@ -12,15 +12,15 @@
       "transcript": "Vi vil gerne informere om, at toget mod København er cirka ti minutter forsinket. Årsagen er et signalproblem længere fremme på strækningen. Vi beklager de gener, det måtte give. Passagerer, der skal videre med et tog fra hovedbanegården, bedes henvende sig til personalet, hvis de er i tvivl om deres videre rejse.",
       "question": "Hvorfor er toget forsinket?",
       "options": [
-        "På grund af dårligt vejr",
         "På grund af et signalproblem",
+        "På grund af dårligt vejr",
         "Fordi der mangler personale",
         "Fordi der er for mange passagerer"
       ]
     },
     "answer": {
       "type": "MCQ_SINGLE",
-      "correctIndex": 1
+      "correctIndex": 0
     },
     "maxPoints": 1
   },
@@ -37,15 +37,15 @@
       "transcript": "Godmorgen, det er lægehuset. Jeg ringer, fordi du har bestilt en tid til på torsdag klokken elleve. Desværre er lægen blevet syg, så vi bliver nødt til at flytte din tid. Kan du i stedet komme mandag klokken ni? Hvis det ikke passer, finder vi selvfølgelig en anden dag, der passer bedre for dig.",
       "question": "Hvorfor ringer lægehuset?",
       "options": [
-        "For at aflyse tiden helt",
         "For at flytte tiden, fordi lægen er syg",
+        "For at aflyse tiden helt",
         "For at minde om en regning",
         "For at bestille en ny prøve"
       ]
     },
     "answer": {
       "type": "MCQ_SINGLE",
-      "correctIndex": 1
+      "correctIndex": 0
     },
     "maxPoints": 1
   },
@@ -63,14 +63,14 @@
       "question": "Hvad er kokkens bedste råd mod madspild?",
       "options": [
         "At købe mere mad ad gangen",
-        "At spise ude oftere",
         "At planlægge måltiderne før indkøb",
+        "At spise ude oftere",
         "At undgå at fryse mad ned"
       ]
     },
     "answer": {
       "type": "MCQ_SINGLE",
-      "correctIndex": 2
+      "correctIndex": 1
     },
     "maxPoints": 1
   },
@@ -138,14 +138,14 @@
       "question": "Hvordan bliver vejret om eftermiddagen?",
       "options": [
         "Regnfuldt hele dagen",
-        "Solen kommer frem de fleste steder",
         "Der kommer sne ved kysterne",
-        "Det bliver meget varmt om aftenen"
+        "Det bliver meget varmt om aftenen",
+        "Solen kommer frem de fleste steder"
       ]
     },
     "answer": {
       "type": "MCQ_SINGLE",
-      "correctIndex": 1
+      "correctIndex": 3
     },
     "maxPoints": 1
   },
@@ -233,13 +233,13 @@
       "transcript": "I dagens afsnit taler vi om søvn. En forsker forklarer, at voksne i gennemsnit har brug for mellem syv og otte timers søvn hver nat for at fungere godt. Hun understreger, at det ikke kun handler om, hvor længe man sover, men også om kvaliteten. Hvis man ser på skærmen lige inden sengetid, kan det gøre det sværere at falde i søvn.",
       "question": "Ifølge forskeren betyder kvaliteten af søvnen ikke noget, kun antallet af timer.",
       "options": [
-        "Rigtigt",
-        "Forkert"
+        "Forkert",
+        "Rigtigt"
       ]
     },
     "answer": {
       "type": "TRUE_FALSE",
-      "correctIndex": 1
+      "correctIndex": 0
     },
     "maxPoints": 1
   },
@@ -256,13 +256,13 @@
       "transcript": "Hej nabo, det er Mette fra nummer tolv. Vi skal holde en lille fest på lørdag, og der kommer nok en del gæster hen på aftenen. Jeg ville bare sige det på forhånd, så I ikke bliver overraskede over lidt musik. Vi lover at skrue ned ved midnat, og I er selvfølgelig meget velkomne til at kigge forbi, hvis I har lyst.",
       "question": "Mette inviterer naboerne til at kigge forbi festen.",
       "options": [
-        "Rigtigt",
-        "Forkert"
+        "Forkert",
+        "Rigtigt"
       ]
     },
     "answer": {
       "type": "TRUE_FALSE",
-      "correctIndex": 0
+      "correctIndex": 1
     },
     "maxPoints": 1
   },
@@ -284,9 +284,9 @@
         "Tom"
       ],
       "right": [
-        "Foretrækker bussen for at kunne slappe af",
         "Er nødt til at køre i bil på grund af børnene",
-        "Cykler for at få motion"
+        "Cykler for at få motion",
+        "Foretrækker bussen for at kunne slappe af"
       ]
     },
     "answer": {
@@ -294,15 +294,15 @@
       "pairs": [
         [
           0,
-          2
+          1
         ],
         [
           1,
-          0
+          2
         ],
         [
           2,
-          1
+          0
         ]
       ]
     },
@@ -326,9 +326,9 @@
         "En borger, der har et spørgsmål om skat"
       ],
       "right": [
-        "Jobcentret",
         "Økonomiafdelingen",
-        "Boligkontoret"
+        "Boligkontoret",
+        "Jobcentret"
       ]
     },
     "answer": {
@@ -336,15 +336,15 @@
       "pairs": [
         [
           0,
-          2
+          1
         ],
         [
           1,
-          0
+          2
         ],
         [
           2,
-          1
+          0
         ]
       ]
     },
@@ -368,9 +368,9 @@
         "Ida"
       ],
       "right": [
-        "Kan lide at være ude og se tingene gro",
         "Slapper af efter en travl dag",
-        "Får energi af fællesskabet"
+        "Får energi af fællesskabet",
+        "Kan lide at være ude og se tingene gro"
       ]
     },
     "answer": {
@@ -378,15 +378,15 @@
       "pairs": [
         [
           0,
-          2
+          1
         ],
         [
           1,
-          0
+          2
         ],
         [
           2,
-          1
+          0
         ]
       ]
     },
@@ -410,9 +410,9 @@
         "Lægen er klar til dig nu"
       ],
       "right": [
-        "I et tog",
         "På et venteværelse",
-        "I et supermarked"
+        "I et supermarked",
+        "I et tog"
       ]
     },
     "answer": {
@@ -420,15 +420,15 @@
       "pairs": [
         [
           0,
-          2
+          1
         ],
         [
           1,
-          0
+          2
         ],
         [
           2,
-          1
+          0
         ]
       ]
     },

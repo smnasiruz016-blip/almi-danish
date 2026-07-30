@@ -9,9 +9,17 @@
     "prompt": "Choose the correct answer.",
     "payload": {
       "question": "What is the Danish word for the local municipality that provides many public services?",
-      "options": ["Region", "Kommune", "Amt", "Sogn"]
+      "options": [
+        "Region",
+        "Amt",
+        "Sogn",
+        "Kommune"
+      ]
     },
-    "answer": { "type": "MCQ_SINGLE", "correctIndex": 1 },
+    "answer": {
+      "type": "MCQ_SINGLE",
+      "correctIndex": 3
+    },
     "maxPoints": 1
   },
   {
@@ -24,9 +32,17 @@
     "prompt": "Choose the correct answer.",
     "payload": {
       "question": "How is the Danish welfare system mainly financed?",
-      "options": ["Private insurance only", "Taxes", "Foreign aid", "Company donations"]
+      "options": [
+        "Private insurance only",
+        "Foreign aid",
+        "Taxes",
+        "Company donations"
+      ]
     },
-    "answer": { "type": "MCQ_SINGLE", "correctIndex": 1 },
+    "answer": {
+      "type": "MCQ_SINGLE",
+      "correctIndex": 2
+    },
     "maxPoints": 1
   },
   {
@@ -39,9 +55,17 @@
     "prompt": "Choose the correct answer.",
     "payload": {
       "question": "In the Danish public health system, who is usually your first point of contact when you are ill?",
-      "options": ["A hospital specialist", "Your own general practitioner (egen laege)", "The pharmacy", "The police"]
+      "options": [
+        "A hospital specialist",
+        "The pharmacy",
+        "Your own general practitioner (egen laege)",
+        "The police"
+      ]
     },
-    "answer": { "type": "MCQ_SINGLE", "correctIndex": 1 },
+    "answer": {
+      "type": "MCQ_SINGLE",
+      "correctIndex": 2
+    },
     "maxPoints": 1
   },
   {
@@ -54,9 +78,17 @@
     "prompt": "Choose the correct answer.",
     "payload": {
       "question": "What is the CPR number used for in Denmark?",
-      "options": ["A driving licence code", "A personal identification number for residents", "A bank account type", "A tax refund form"]
+      "options": [
+        "A driving licence code",
+        "A bank account type",
+        "A personal identification number for residents",
+        "A tax refund form"
+      ]
     },
-    "answer": { "type": "MCQ_SINGLE", "correctIndex": 1 },
+    "answer": {
+      "type": "MCQ_SINGLE",
+      "correctIndex": 2
+    },
     "maxPoints": 1
   },
   {
@@ -70,13 +102,16 @@
     "payload": {
       "question": "What is the name of the Danish tax agency?",
       "options": [
-        "Skattestyrelsen",
         "Udbetaling Danmark",
         "SU",
-        "ATP"
+        "ATP",
+        "Skattestyrelsen"
       ]
     },
-    "answer": { "type": "MCQ_SINGLE", "correctIndex": 0 },
+    "answer": {
+      "type": "MCQ_SINGLE",
+      "correctIndex": 3
+    },
     "maxPoints": 1
   },
   {
@@ -89,9 +124,17 @@
     "prompt": "Choose the correct answer.",
     "payload": {
       "question": "In Denmark, children are subject to compulsory education (undervisningspligt) for how many years?",
-      "options": ["6 years", "10 years", "15 years", "3 years"]
+      "options": [
+        "6 years",
+        "10 years",
+        "15 years",
+        "3 years"
+      ]
     },
-    "answer": { "type": "MCQ_SINGLE", "correctIndex": 1 },
+    "answer": {
+      "type": "MCQ_SINGLE",
+      "correctIndex": 1
+    },
     "maxPoints": 1
   },
   {
@@ -104,9 +147,17 @@
     "prompt": "Choose the correct answer.",
     "payload": {
       "question": "Which statement best reflects the principle of gender equality in Danish society?",
-      "options": ["Only men may vote in elections", "Women and men have equal rights and opportunities", "Women may not work outside the home", "Only men may hold public office"]
+      "options": [
+        "Women and men have equal rights and opportunities",
+        "Only men may vote in elections",
+        "Women may not work outside the home",
+        "Only men may hold public office"
+      ]
     },
-    "answer": { "type": "MCQ_SINGLE", "correctIndex": 1 },
+    "answer": {
+      "type": "MCQ_SINGLE",
+      "correctIndex": 0
+    },
     "maxPoints": 1
   },
   {
@@ -119,9 +170,17 @@
     "prompt": "Choose the correct answer.",
     "payload": {
       "question": "Foreign nationals residing in Denmark can often vote in which type of election if they meet residence requirements?",
-      "options": ["National parliamentary elections", "Municipal (local) and regional elections", "European Parliament elections for all", "Referendums on the constitution"]
+      "options": [
+        "National parliamentary elections",
+        "Municipal (local) and regional elections",
+        "European Parliament elections for all",
+        "Referendums on the constitution"
+      ]
     },
-    "answer": { "type": "MCQ_SINGLE", "correctIndex": 1 },
+    "answer": {
+      "type": "MCQ_SINGLE",
+      "correctIndex": 1
+    },
     "maxPoints": 1
   },
   {
@@ -134,9 +193,17 @@
     "prompt": "Choose the correct answer.",
     "payload": {
       "question": "In the Danish labour market, pay and working conditions are largely set by whom?",
-      "options": ["The monarch", "Agreements between trade unions and employers", "The European Commission", "Individual customers"]
+      "options": [
+        "Agreements between trade unions and employers",
+        "The monarch",
+        "The European Commission",
+        "Individual customers"
+      ]
     },
-    "answer": { "type": "MCQ_SINGLE", "correctIndex": 1 },
+    "answer": {
+      "type": "MCQ_SINGLE",
+      "correctIndex": 0
+    },
     "maxPoints": 1
   },
   {
@@ -149,9 +216,17 @@
     "prompt": "Choose the correct answer.",
     "payload": {
       "question": "Which number do you call in Denmark to reach the emergency services (police, fire, ambulance)?",
-      "options": ["911", "112", "999", "100"]
+      "options": [
+        "112",
+        "911",
+        "999",
+        "100"
+      ]
     },
-    "answer": { "type": "MCQ_SINGLE", "correctIndex": 1 },
+    "answer": {
+      "type": "MCQ_SINGLE",
+      "correctIndex": 0
+    },
     "maxPoints": 1
   },
   {
@@ -164,9 +239,17 @@
     "prompt": "Choose the correct answer.",
     "payload": {
       "question": "What is MitID used for in Denmark?",
-      "options": ["A public transport ticket", "A secure digital login for public services and banking", "A grocery loyalty card", "A residence permit stamp"]
+      "options": [
+        "A public transport ticket",
+        "A grocery loyalty card",
+        "A residence permit stamp",
+        "A secure digital login for public services and banking"
+      ]
     },
-    "answer": { "type": "MCQ_SINGLE", "correctIndex": 1 },
+    "answer": {
+      "type": "MCQ_SINGLE",
+      "correctIndex": 3
+    },
     "maxPoints": 1
   },
   {
@@ -179,9 +262,17 @@
     "prompt": "Choose the correct answer.",
     "payload": {
       "question": "Which fundamental right is protected in Denmark and central to its democracy?",
-      "options": ["The right to avoid all taxes", "Freedom of expression", "The right to ignore court rulings", "The right to a state-provided car"]
+      "options": [
+        "The right to avoid all taxes",
+        "Freedom of expression",
+        "The right to ignore court rulings",
+        "The right to a state-provided car"
+      ]
     },
-    "answer": { "type": "MCQ_SINGLE", "correctIndex": 1 },
+    "answer": {
+      "type": "MCQ_SINGLE",
+      "correctIndex": 1
+    },
     "maxPoints": 1
   },
   {
@@ -193,10 +284,16 @@
     "title": "Public healthcare",
     "prompt": "Decide whether the statement is true or false.",
     "payload": {
-      "question": "Basic public healthcare, such as visits to your general practitioner, is generally free of direct charge for residents in Denmark.",
-      "options": ["True", "False"]
+      "question": "Residents in Denmark must pay the full cost of a visit to their general practitioner.",
+      "options": [
+        "True",
+        "False"
+      ]
     },
-    "answer": { "type": "TRUE_FALSE", "correctIndex": 0 },
+    "answer": {
+      "type": "TRUE_FALSE",
+      "correctIndex": 1
+    },
     "maxPoints": 1
   },
   {
@@ -209,9 +306,15 @@
     "prompt": "Decide whether the statement is true or false.",
     "payload": {
       "question": "People who work and earn an income in Denmark are generally required to pay income tax.",
-      "options": ["True", "False"]
+      "options": [
+        "True",
+        "False"
+      ]
     },
-    "answer": { "type": "TRUE_FALSE", "correctIndex": 0 },
+    "answer": {
+      "type": "TRUE_FALSE",
+      "correctIndex": 0
+    },
     "maxPoints": 1
   },
   {
@@ -224,9 +327,15 @@
     "prompt": "Decide whether the statement is true or false.",
     "payload": {
       "question": "In Denmark, men and women have equal rights under the law.",
-      "options": ["True", "False"]
+      "options": [
+        "True",
+        "False"
+      ]
     },
-    "answer": { "type": "TRUE_FALSE", "correctIndex": 0 },
+    "answer": {
+      "type": "TRUE_FALSE",
+      "correctIndex": 0
+    },
     "maxPoints": 1
   }
 ]

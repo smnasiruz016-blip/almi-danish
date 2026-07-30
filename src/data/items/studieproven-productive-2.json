@@ -15,7 +15,10 @@
         "Adskillelse af beskrivelse og vurdering",
         "Akademisk register og korrekt sprog"
       ],
-      "charBand": { "min": 200, "max": 400 }
+      "charBand": {
+        "min": 200,
+        "max": 400
+      }
     },
     "answer": null,
     "maxPoints": 10
@@ -36,7 +39,10 @@
         "Loyal behandling af modargument",
         "Fagligt præcist ordforråd og korrekt grammatik"
       ],
-      "charBand": { "min": 200, "max": 400 }
+      "charBand": {
+        "min": 200,
+        "max": 400
+      }
     },
     "answer": null,
     "maxPoints": 10
@@ -57,7 +63,10 @@
         "Sammenhængende opbygning med rød tråd",
         "Præcist og varieret akademisk sprog"
       ],
-      "charBand": { "min": 200, "max": 400 }
+      "charBand": {
+        "min": 200,
+        "max": 400
+      }
     },
     "answer": null,
     "maxPoints": 10
@@ -78,7 +87,10 @@
         "Logisk progression og sammenhæng",
         "Korrekt og præcist sprog"
       ],
-      "charBand": { "min": 200, "max": 400 }
+      "charBand": {
+        "min": 200,
+        "max": 400
+      }
     },
     "answer": null,
     "maxPoints": 10
@@ -99,7 +111,10 @@
         "Konkrete og relevante eksempler",
         "Akademisk register og korrekt grammatik"
       ],
-      "charBand": { "min": 200, "max": 400 }
+      "charBand": {
+        "min": 200,
+        "max": 400
+      }
     },
     "answer": null,
     "maxPoints": 10
@@ -120,7 +135,10 @@
         "Fagligt præcist ordforråd",
         "Korrekt struktur og grammatik"
       ],
-      "charBand": { "min": 200, "max": 400 }
+      "charBand": {
+        "min": 200,
+        "max": 400
+      }
     },
     "answer": null,
     "maxPoints": 10
@@ -141,7 +159,10 @@
         "Logisk sammenhæng mellem referat og vurdering",
         "Korrekt og varieret sprog"
       ],
-      "charBand": { "min": 200, "max": 400 }
+      "charBand": {
+        "min": 200,
+        "max": 400
+      }
     },
     "answer": null,
     "maxPoints": 10

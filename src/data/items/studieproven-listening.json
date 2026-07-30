@@ -12,12 +12,15 @@
       "question": "Hvad er forelæserens hovedpointe om hukommelsen?",
       "options": [
         "At minder opbevares uforandret som i et arkiv",
-        "At minder rekonstrueres og kan påvirkes, hver gang de genkaldes",
         "At vidneudsagn altid er pålidelige",
-        "At hukommelsen ikke kan udforskes videnskabeligt"
+        "At hukommelsen ikke kan udforskes videnskabeligt",
+        "At minder rekonstrueres og kan påvirkes, hver gang de genkaldes"
       ]
     },
-    "answer": { "type": "MCQ_SINGLE", "correctIndex": 1 },
+    "answer": {
+      "type": "MCQ_SINGLE",
+      "correctIndex": 3
+    },
     "maxPoints": 1
   },
   {
@@ -32,13 +35,16 @@
       "transcript": "Ordstyrer: Vi diskuterer i dag, om videregående uddannelse fortsat bør være gratis. Første debattør, værsgo. Debattør A: Gratis uddannelse er en investering, ikke en udgift. Når staten betaler, sikrer vi, at talent og ikke pengepung afgør, hvem der læser videre. Debattør B: Men vi må erkende, at en betydelig del af de offentlige midler tilfalder studerende fra velstillede hjem, som ville have studeret uanset. Jeg efterlyser ikke afgifter, men en mere målrettet fordeling af støtten. Debattør A: Der er jeg uenig; enhver form for målretning risikerer at stigmatisere og afskrække netop dem, vi vil hjælpe.",
       "question": "Hvad er debattør B's egentlige forslag?",
       "options": [
+        "At fordele støtten mere målrettet frem for at indføre afgifter",
         "At indføre studieafgifter for alle",
         "At afskaffe al offentlig støtte",
-        "At fordele støtten mere målrettet frem for at indføre afgifter",
         "At kun velstillede skal kunne studere"
       ]
     },
-    "answer": { "type": "MCQ_SINGLE", "correctIndex": 2 },
+    "answer": {
+      "type": "MCQ_SINGLE",
+      "correctIndex": 0
+    },
     "maxPoints": 1
   },
   {
@@ -59,7 +65,10 @@
         "At repetition er fuldstændig unødvendigt"
       ]
     },
-    "answer": { "type": "MCQ_SINGLE", "correctIndex": 2 },
+    "answer": {
+      "type": "MCQ_SINGLE",
+      "correctIndex": 2
+    },
     "maxPoints": 1
   },
   {
@@ -74,13 +83,16 @@
       "transcript": "Når vi taler om migration i den offentlige debat, forenkles billedet ofte til et spørgsmål om ind- eller udvandring. Men demografer minder os om, at migration er et langt mere sammensat fænomen. Mange, der flytter over grænser, gør det midlertidigt, cirkulært eller flere gange i løbet af livet. Statistikken, der opgør nettoindvandring for et enkelt år, kan derfor skjule store bevægelser i begge retninger. Hvis politikken bygger på et statisk billede af permanente flytninger, risikerer den at ramme ved siden af den virkelighed, den skal regulere.",
       "question": "Hvorfor kan årlig nettoindvandring være misvisende ifølge forelæseren?",
       "options": [
-        "Fordi den overvurderer udvandringen",
         "Fordi den skjuler store, midlertidige bevægelser i begge retninger",
+        "Fordi den overvurderer udvandringen",
         "Fordi migration aldrig kan måles",
         "Fordi kun permanente flytninger tæller som migration"
       ]
     },
-    "answer": { "type": "MCQ_SINGLE", "correctIndex": 1 },
+    "answer": {
+      "type": "MCQ_SINGLE",
+      "correctIndex": 0
+    },
     "maxPoints": 1
   },
   {
@@ -101,7 +113,10 @@
         "At biodiversitet er vigtigere end klimaet"
       ]
     },
-    "answer": { "type": "MCQ_SINGLE", "correctIndex": 1 },
+    "answer": {
+      "type": "MCQ_SINGLE",
+      "correctIndex": 1
+    },
     "maxPoints": 1
   },
   {
@@ -122,7 +137,10 @@
         "Fordi gennemsnit aldrig bør bruges"
       ]
     },
-    "answer": { "type": "MCQ_SINGLE", "correctIndex": 1 },
+    "answer": {
+      "type": "MCQ_SINGLE",
+      "correctIndex": 1
+    },
     "maxPoints": 1
   },
   {
@@ -138,12 +156,15 @@
       "question": "Hvad understreger forelæseren om byplanlægning?",
       "options": [
         "At den kun handler om bygningers udseende",
-        "At fysiske rammer former menneskers adfærd og sociale mønstre",
         "At brede veje altid er at foretrække",
+        "At fysiske rammer former menneskers adfærd og sociale mønstre",
         "At arkitektur ikke har social betydning"
       ]
     },
-    "answer": { "type": "MCQ_SINGLE", "correctIndex": 1 },
+    "answer": {
+      "type": "MCQ_SINGLE",
+      "correctIndex": 2
+    },
     "maxPoints": 1
   },
   {
@@ -157,9 +178,15 @@
     "payload": {
       "transcript": "I dagens oplæg vil jeg tale om, hvordan tillid påvirker folkesundheden. Vacciners effektivitet afhænger ikke alene af biologien, men også af, hvor mange der faktisk lader sig vaccinere. Og den tilslutning hviler i høj grad på tillid til myndighederne. I samfund, hvor tilliden er lav, spreder tvivl og misinformation sig hurtigere, og det kan underminere selv en veltilrettelagt indsats. Derfor er kommunikation ikke en eftertanke, men en central del af enhver sundhedsstrategi.",
       "question": "Ifølge oplægsholderen afhænger vaccinationsindsatsens succes udelukkende af biologien.",
-      "options": ["Rigtigt", "Forkert"]
+      "options": [
+        "Forkert",
+        "Rigtigt"
+      ]
     },
-    "answer": { "type": "TRUE_FALSE", "correctIndex": 1 },
+    "answer": {
+      "type": "TRUE_FALSE",
+      "correctIndex": 0
+    },
     "maxPoints": 1
   },
   {
@@ -173,9 +200,15 @@
     "payload": {
       "transcript": "Inflation forklares ofte enkelt som for mange penge, der jager for få varer. Men den seneste tids prisstigninger skyldes i vid udstrækning forstyrrelser på udbudssiden, altså flaskehalse i produktion og transport snarere end en overophedet efterspørgsel. Det har betydning for, hvilken medicin der virker. Renteforhøjelser dæmper efterspørgslen, men de kan ikke uden videre løse en knaphed, der bunder i afbrudte forsyningskæder. Derfor er nationalbankernes opgave i øjeblikket usædvanlig vanskelig.",
       "question": "Ifølge taleren skyldtes de seneste prisstigninger primært udbudsforstyrrelser.",
-      "options": ["Rigtigt", "Forkert"]
+      "options": [
+        "Forkert",
+        "Rigtigt"
+      ]
     },
-    "answer": { "type": "TRUE_FALSE", "correctIndex": 0 },
+    "answer": {
+      "type": "TRUE_FALSE",
+      "correctIndex": 1
+    },
     "maxPoints": 1
   },
   {
@@ -189,9 +222,15 @@
     "payload": {
       "transcript": "En undersøgelse af unges læsevaner giver et mere nuanceret billede, end overskrifterne antyder. Det er rigtigt, at unge læser færre romaner end tidligere generationer, men de læser til gengæld enorme mængder tekst på skærm hver eneste dag. Spørgsmålet er derfor ikke, om de unge læser, men hvad og hvordan de læser. Den dybe, koncentrerede læsning af lange tekster ser ud til at være under pres, og netop den evne er afgørende i en akademisk sammenhæng.",
       "question": "Ifølge undersøgelsen læser unge stort set ingen tekst i dag.",
-      "options": ["Rigtigt", "Forkert"]
+      "options": [
+        "Rigtigt",
+        "Forkert"
+      ]
     },
-    "answer": { "type": "TRUE_FALSE", "correctIndex": 1 },
+    "answer": {
+      "type": "TRUE_FALSE",
+      "correctIndex": 1
+    },
     "maxPoints": 1
   },
   {
@@ -205,9 +244,15 @@
     "payload": {
       "transcript": "Når vi diskuterer kunstig intelligens og etik, glider samtalen let over i science fiction om selvbevidste maskiner. Men de påtrængende etiske problemer er langt mere jordnære. De handler om, hvilke data systemerne trænes på, om hvem der holdes ansvarlig, når en algoritme fejler, og om, hvordan bias i historiske data risikerer at blive kodet ind i fremtidige beslutninger. At fokusere ensidigt på fjerne fremtidsscenarier kan faktisk aflede opmærksomheden fra de skævheder, der allerede påvirker mennesker i dag.",
       "question": "Ifølge taleren er de mest presserende etiske problemer ved kunstig intelligens jordnære og aktuelle.",
-      "options": ["Rigtigt", "Forkert"]
+      "options": [
+        "Rigtigt",
+        "Forkert"
+      ]
     },
-    "answer": { "type": "TRUE_FALSE", "correctIndex": 0 },
+    "answer": {
+      "type": "TRUE_FALSE",
+      "correctIndex": 0
+    },
     "maxPoints": 1
   },
   {
@@ -221,14 +266,34 @@
     "payload": {
       "transcript": "Ordstyrer: Vi har tre paneldeltagere til dagens debat om fjernundervisning. Anders: For mig er den store gevinst fleksibiliteten; studerende kan nu følge undervisning uanset bopæl og livssituation. Beate: Jeg er mere bekymret for det sociale. Meget læring sker jo i de uformelle samtaler, som forsvinder, når alle sidder derhjemme. Christian: Min hovedpointe er en anden, nemlig at kvaliteten svinger enormt; noget onlineundervisning er fremragende, andet er blot en optaget forelæsning uden interaktion.",
       "instructions": "Forbind hver taler med den holdning, vedkommende giver udtryk for.",
-      "left": ["Anders", "Beate", "Christian"],
+      "left": [
+        "Anders",
+        "Beate",
+        "Christian"
+      ],
       "right": [
-        "Fremhæver bekymring for det sociale og de uformelle samtaler",
         "Fremhæver fleksibiliteten uanset bopæl",
-        "Fremhæver den svingende kvalitet af onlineundervisning"
+        "Fremhæver den svingende kvalitet af onlineundervisning",
+        "Fremhæver bekymring for det sociale og de uformelle samtaler"
       ]
     },
-    "answer": { "type": "MATCHING", "pairs": [[0, 1], [1, 0], [2, 2]] },
+    "answer": {
+      "type": "MATCHING",
+      "pairs": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ]
+      ]
+    },
     "maxPoints": 3
   },
   {
@@ -242,14 +307,34 @@
     "payload": {
       "transcript": "I introduktionen til studiet vil jeg kort skitsere, hvad tre beslægtede fag beskæftiger sig med. Sociologien spørger, hvordan samfundets strukturer former grupper og individer. Psykologien retter i stedet blikket indad og undersøger den enkeltes tanker, følelser og adfærd. Antropologien søger gennem tæt feltarbejde at forstå kultur indefra, ofte i samfund, der adskiller sig markant fra forskerens eget.",
       "instructions": "Forbind hvert fag med det spørgsmål, det især beskæftiger sig med.",
-      "left": ["Sociologi", "Psykologi", "Antropologi"],
+      "left": [
+        "Sociologi",
+        "Psykologi",
+        "Antropologi"
+      ],
       "right": [
+        "Hvordan fungerer den enkeltes tanker, følelser og adfærd?",
         "Hvordan forstås en kultur indefra gennem feltarbejde?",
-        "Hvordan former samfundets strukturer grupper og individer?",
-        "Hvordan fungerer den enkeltes tanker, følelser og adfærd?"
+        "Hvordan former samfundets strukturer grupper og individer?"
       ]
     },
-    "answer": { "type": "MATCHING", "pairs": [[0, 1], [1, 2], [2, 0]] },
+    "answer": {
+      "type": "MATCHING",
+      "pairs": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ]
+      ]
+    },
     "maxPoints": 3
   },
   {
@@ -263,14 +348,34 @@
     "payload": {
       "transcript": "I denne del af forelæsningen sammenligner vi tre energikilder. Vindkraft er billig i drift, men produktionen svinger med vejret og er derfor svær at planlægge. Kernekraft leverer til gengæld en stabil grundlast døgnet rundt, men rejser vanskelige spørgsmål om affald og sikkerhed. Solceller er blevet bemærkelsesværdigt billige og velegnede til decentral produktion på tage, men de yder naturligvis kun, når solen skinner.",
       "instructions": "Forbind hver energikilde med det, der især kendetegner den.",
-      "left": ["Vindkraft", "Kernekraft", "Solceller"],
+      "left": [
+        "Vindkraft",
+        "Kernekraft",
+        "Solceller"
+      ],
       "right": [
-        "Stabil grundlast, men spørgsmål om affald og sikkerhed",
         "Billig drift, men svingende produktion afhængig af vejret",
-        "Velegnet til decentral produktion på tage"
+        "Velegnet til decentral produktion på tage",
+        "Stabil grundlast, men spørgsmål om affald og sikkerhed"
       ]
     },
-    "answer": { "type": "MATCHING", "pairs": [[0, 1], [1, 0], [2, 2]] },
+    "answer": {
+      "type": "MATCHING",
+      "pairs": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ]
+      ]
+    },
     "maxPoints": 3
   },
   {
@@ -284,14 +389,34 @@
     "payload": {
       "transcript": "I idehistorien støder vi på en række tænkere, hvis grundtanker stadig præger vores samfundsdebat. Én tænker hævdede, at samfundet hviler på en kontrakt, hvor borgerne afgiver en del af deres frihed mod til gengæld at nyde beskyttelse. En anden fremhævede arbejdsdelingen som drivkraften bag velstand, idet specialisering gør produktionen langt mere effektiv. En tredje rettede en skarp kritik mod, at markedet gør menneskers arbejde til en vare på lige fod med andre varer.",
       "instructions": "Forbind hver grundtanke med den beskrivelse, der passer.",
-      "left": ["Samfundskontrakten", "Arbejdsdelingen", "Kritikken af markedet"],
+      "left": [
+        "Samfundskontrakten",
+        "Arbejdsdelingen",
+        "Kritikken af markedet"
+      ],
       "right": [
-        "Specialisering gør produktionen mere effektiv og skaber velstand",
         "Borgerne afgiver frihed mod til gengæld at få beskyttelse",
-        "Markedet risikerer at gøre menneskers arbejde til en vare"
+        "Markedet risikerer at gøre menneskers arbejde til en vare",
+        "Specialisering gør produktionen mere effektiv og skaber velstand"
       ]
     },
-    "answer": { "type": "MATCHING", "pairs": [[0, 1], [1, 0], [2, 2]] },
+    "answer": {
+      "type": "MATCHING",
+      "pairs": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ]
+      ]
+    },
     "maxPoints": 3
   }
 ]

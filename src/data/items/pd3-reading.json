@@ -12,15 +12,15 @@
       "passage": "Kære brugere. Fra og med den 1. september ændrer biblioteket sine åbningstider. Vi holder nu åbent med personale hver hverdag fra klokken 10 til 18. Om lørdagen kan I komme ind mellem klokken 10 og 14. Uden for disse tider kan I stadig bruge det selvbetjente bibliotek, hvis I har et lånerkort og en pinkode. Husk, at der ikke er personale til stede om søndagen.",
       "question": "Hvornår kan man få hjælp af personalet på biblioteket?",
       "options": [
-        "Kun om søndagen",
         "På hverdage mellem klokken 10 og 18",
+        "Kun om søndagen",
         "Døgnet rundt med lånerkort",
         "Aldrig om lørdagen"
       ]
     },
     "answer": {
       "type": "MCQ_SINGLE",
-      "correctIndex": 1
+      "correctIndex": 0
     },
     "maxPoints": 1
   },
@@ -38,14 +38,14 @@
       "question": "Hvad lægger arbejdsgiveren mest vægt på?",
       "options": [
         "At man har lang erfaring",
-        "At man kun kan arbejde i weekenden",
         "At man er positiv og pålidelig",
+        "At man kun kan arbejde i weekenden",
         "At man bor i Aarhus"
       ]
     },
     "answer": {
       "type": "MCQ_SINGLE",
-      "correctIndex": 2
+      "correctIndex": 1
     },
     "maxPoints": 1
   },
@@ -88,14 +88,14 @@
       "question": "Hvad skal borgeren gøre, hvis kortet ikke kommer inden for to uger?",
       "options": [
         "Vente en måned mere",
-        "Kontakte Borgerservice",
         "Søge om kortet igen på nettet",
-        "Kaste det gamle kort væk"
+        "Kaste det gamle kort væk",
+        "Kontakte Borgerservice"
       ]
     },
     "answer": {
       "type": "MCQ_SINGLE",
-      "correctIndex": 1
+      "correctIndex": 3
     },
     "maxPoints": 1
   },
@@ -113,14 +113,14 @@
       "question": "Hvilken ulempe ved hjemmearbejde nævner lederne?",
       "options": [
         "At medarbejderne bliver mindre produktive",
-        "At transporten bliver længere",
         "At det er svært at holde sammen på et team",
+        "At transporten bliver længere",
         "At medarbejderne arbejder for meget"
       ]
     },
     "answer": {
       "type": "MCQ_SINGLE",
-      "correctIndex": 2
+      "correctIndex": 1
     },
     "maxPoints": 1
   },
@@ -137,15 +137,15 @@
       "passage": "I vores boligforening sorterer vi nu affaldet i flere spande. Madrester skal i den grønne beholder, mens papir og pap kommer i den blå. Glas og metal har hver sin beholder ude ved parkeringspladsen. Vi beder alle beboere om at skylle emballagen, før den smides ud, så der ikke kommer lugt og skadedyr. Hvis du er i tvivl om, hvor noget hører hjemme, hænger der en vejledning ved skraldeskuret.",
       "question": "Hvor skal papir og pap smides ud?",
       "options": [
-        "I den grønne beholder",
         "I den blå beholder",
+        "I den grønne beholder",
         "Ved parkeringspladsen sammen med glas",
         "I skraldeskuret"
       ]
     },
     "answer": {
       "type": "MCQ_SINGLE",
-      "correctIndex": 1
+      "correctIndex": 0
     },
     "maxPoints": 1
   },
@@ -162,13 +162,13 @@
       "passage": "I Danmark har både mødre og fædre ret til barsel, når de får et barn. Reglerne er lavet, så forældrene kan dele en stor del af orloven mellem sig. Tanken bag ordningen er, at begge forældre skal have mulighed for at være tæt på barnet i den første tid. Mange arbejdspladser opfordrer i dag også fædre til at tage en længere del af barslen.",
       "question": "Ifølge teksten har kun mødre ret til barsel i Danmark.",
       "options": [
-        "Rigtigt",
-        "Forkert"
+        "Forkert",
+        "Rigtigt"
       ]
     },
     "answer": {
       "type": "TRUE_FALSE",
-      "correctIndex": 1
+      "correctIndex": 0
     },
     "maxPoints": 1
   },
@@ -185,13 +185,13 @@
       "passage": "Aftenskolen tilbyder til efteråret et nyt kursus i dansk madlavning. Kurset løber over otte tirsdage, og man behøver ikke at have erfaring med at lave mad i forvejen. Deltagerne skal selv betale for råvarerne, men selve undervisningen er gratis. Der er kun plads til tolv personer, så det anbefales at tilmelde sig hurtigt.",
       "question": "Deltagerne skal selv betale for råvarerne.",
       "options": [
-        "Rigtigt",
-        "Forkert"
+        "Forkert",
+        "Rigtigt"
       ]
     },
     "answer": {
       "type": "TRUE_FALSE",
-      "correctIndex": 0
+      "correctIndex": 1
     },
     "maxPoints": 1
   },
@@ -208,13 +208,13 @@
       "passage": "Frivilligt arbejde spiller en vigtig rolle i det danske samfund. Rundt om i landet bruger tusindvis af mennesker deres fritid på at hjælpe andre, for eksempel i sportsklubber, på plejehjem eller i sociale foreninger. Selvom man ikke får løn for det, fortæller mange frivillige, at de får meget igen, blandt andet nye venskaber og en følelse af at gøre en forskel.",
       "question": "Ifølge teksten får de frivillige løn for deres arbejde.",
       "options": [
-        "Rigtigt",
-        "Forkert"
+        "Forkert",
+        "Rigtigt"
       ]
     },
     "answer": {
       "type": "TRUE_FALSE",
-      "correctIndex": 1
+      "correctIndex": 0
     },
     "maxPoints": 1
   },
@@ -236,9 +236,9 @@
         "Lena vil kunne tale mere sikkert med sine kolleger."
       ],
       "right": [
+        "Forstå nyhederne",
         "Dansk på jobbet",
-        "Skriv en god ansøgning",
-        "Forstå nyhederne"
+        "Skriv en god ansøgning"
       ]
     },
     "answer": {
@@ -246,15 +246,15 @@
       "pairs": [
         [
           0,
-          1
-        ],
-        [
-          1,
           2
         ],
         [
-          2,
+          1,
           0
+        ],
+        [
+          2,
+          1
         ]
       ]
     },
@@ -278,9 +278,9 @@
         "Vask hænder før du går tilbage til arbejdet"
       ],
       "right": [
-        "I en park",
         "På et køkken på arbejdspladsen",
-        "På et læsesal på biblioteket"
+        "På et læsesal på biblioteket",
+        "I en park"
       ]
     },
     "answer": {
@@ -288,15 +288,15 @@
       "pairs": [
         [
           0,
-          2
+          1
         ],
         [
           1,
-          0
+          2
         ],
         [
           2,
-          1
+          0
         ]
       ]
     },
@@ -320,9 +320,9 @@
         "Kan jeg få hjælp til at læse et brev fra det offentlige?"
       ],
       "right": [
-        "Ja, kom forbi Borgerservice, så hjælper vi dig.",
         "Det gør du let via borger.dk med dit MitID.",
-        "Hver anden torsdag i lige uger."
+        "Hver anden torsdag i lige uger.",
+        "Ja, kom forbi Borgerservice, så hjælper vi dig."
       ]
     },
     "answer": {
@@ -330,15 +330,15 @@
       "pairs": [
         [
           0,
-          2
-        ],
-        [
-          1,
           1
         ],
         [
-          2,
+          1,
           0
+        ],
+        [
+          2,
+          2
         ]
       ]
     },
@@ -367,8 +367,8 @@
         {
           "id": 2,
           "options": [
-            "glemmer",
             "husker",
+            "glemmer",
             "nægter"
           ]
         }
@@ -383,7 +383,7 @@
         },
         {
           "id": 2,
-          "index": 1
+          "index": 0
         }
       ]
     },
@@ -404,9 +404,9 @@
         {
           "id": 1,
           "options": [
-            "men",
             "derfor",
-            "fordi"
+            "fordi",
+            "men"
           ]
         },
         {
@@ -424,7 +424,7 @@
       "correct": [
         {
           "id": 1,
-          "index": 0
+          "index": 2
         },
         {
           "id": 2,
@@ -449,9 +449,9 @@
         {
           "id": 1,
           "options": [
-            "tæller",
             "koster",
-            "mangler"
+            "mangler",
+            "tæller"
           ]
         },
         {
@@ -469,7 +469,7 @@
       "correct": [
         {
           "id": 1,
-          "index": 0
+          "index": 2
         },
         {
           "id": 2,

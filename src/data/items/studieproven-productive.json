@@ -15,7 +15,10 @@
         "Akademisk sprog med præcist ordforråd",
         "Korrekt grammatik og hensigtsmæssig tekststruktur"
       ],
-      "charBand": { "min": 200, "max": 400 }
+      "charBand": {
+        "min": 200,
+        "max": 400
+      }
     },
     "answer": null,
     "maxPoints": 10
@@ -36,7 +39,10 @@
         "Sammenhæng og logisk progression",
         "Varieret og præcist akademisk sprog"
       ],
-      "charBand": { "min": 200, "max": 400 }
+      "charBand": {
+        "min": 200,
+        "max": 400
+      }
     },
     "answer": null,
     "maxPoints": 10
@@ -57,7 +63,10 @@
         "Afvejning af modstående hensyn",
         "Korrekt sprog og akademisk register"
       ],
-      "charBand": { "min": 200, "max": 400 }
+      "charBand": {
+        "min": 200,
+        "max": 400
+      }
     },
     "answer": null,
     "maxPoints": 10
@@ -78,7 +87,10 @@
         "Sammenhængende opbygning med tydelig konklusion",
         "Præcist ordvalg og korrekt grammatik"
       ],
-      "charBand": { "min": 200, "max": 400 }
+      "charBand": {
+        "min": 200,
+        "max": 400
+      }
     },
     "answer": null,
     "maxPoints": 10
@@ -99,7 +111,10 @@
         "Logisk sammenhæng mellem referat og vurdering",
         "Korrekt og varieret sprog"
       ],
-      "charBand": { "min": 200, "max": 400 }
+      "charBand": {
+        "min": 200,
+        "max": 400
+      }
     },
     "answer": null,
     "maxPoints": 10
@@ -120,7 +135,10 @@
         "Sammenhængende struktur",
         "Akademisk og korrekt sprog"
       ],
-      "charBand": { "min": 200, "max": 400 }
+      "charBand": {
+        "min": 200,
+        "max": 400
+      }
     },
     "answer": null,
     "maxPoints": 10
@@ -141,7 +159,10 @@
         "Fagligt præcist ordforråd",
         "Korrekt grammatik og struktur"
       ],
-      "charBand": { "min": 200, "max": 400 }
+      "charBand": {
+        "min": 200,
+        "max": 400
+      }
     },
     "answer": null,
     "maxPoints": 10
@@ -162,7 +183,10 @@
         "Overbevisende argumentation",
         "Korrekt og flydende sprog"
       ],
-      "charBand": { "min": 200, "max": 400 }
+      "charBand": {
+        "min": 200,
+        "max": 400
+      }
     },
     "answer": null,
     "maxPoints": 10
