@@ -42,14 +42,10 @@ export function PracticeRunner({
   async function submit() {
     if (result || busy) return;
     setBusy(true);
-    const graded = await submitAttempt({
-      exam: item.exam,
-      skill: item.skill,
-      taskType: item.taskType,
-      answer: item.answer,
-      maxPoints: item.maxPoints,
-      response,
-    });
+    // Which task, and what the learner did. Nothing else — this used to post
+    // `answer: item.answer` and `maxPoints`, i.e. the key and the denominator, and the
+    // server marked against them.
+    const graded = await submitAttempt({ itemId: item.id, response });
     setBusy(false);
     const r: SubmitResult =
       graded ?? { ok: false, points: 0, maxPoints: item.maxPoints || 1, correct: false };

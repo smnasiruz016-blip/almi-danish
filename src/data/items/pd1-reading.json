@@ -10,9 +10,17 @@
     "payload": {
       "passage": "Hej! Jeg hedder Anna. Jeg bor i København. Jeg er femogtyve år gammel.",
       "question": "Hvor bor Anna?",
-      "options": ["I Aarhus", "I København", "I Odense", "I Aalborg"]
+      "options": [
+        "I Aarhus",
+        "I Odense",
+        "I Aalborg",
+        "I København"
+      ]
     },
-    "answer": { "type": "MCQ_SINGLE", "correctIndex": 1 },
+    "answer": {
+      "type": "MCQ_SINGLE",
+      "correctIndex": 3
+    },
     "maxPoints": 1
   },
   {
@@ -26,9 +34,17 @@
     "payload": {
       "passage": "Peter har en kone og to børn. Hans søn hedder Lars, og hans datter hedder Emma.",
       "question": "Hvor mange børn har Peter?",
-      "options": ["Et", "To", "Tre", "Fire"]
+      "options": [
+        "Et",
+        "Tre",
+        "To",
+        "Fire"
+      ]
     },
-    "answer": { "type": "MCQ_SINGLE", "correctIndex": 1 },
+    "answer": {
+      "type": "MCQ_SINGLE",
+      "correctIndex": 2
+    },
     "maxPoints": 1
   },
   {
@@ -42,9 +58,17 @@
     "payload": {
       "passage": "Jeg køber mælk, brød og æg i supermarkedet. Mælken koster ti kroner.",
       "question": "Hvad koster mælken?",
-      "options": ["Fem kroner", "Ti kroner", "Tyve kroner", "Tredive kroner"]
+      "options": [
+        "Fem kroner",
+        "Ti kroner",
+        "Tyve kroner",
+        "Tredive kroner"
+      ]
     },
-    "answer": { "type": "MCQ_SINGLE", "correctIndex": 1 },
+    "answer": {
+      "type": "MCQ_SINGLE",
+      "correctIndex": 1
+    },
     "maxPoints": 1
   },
   {
@@ -58,9 +82,17 @@
     "payload": {
       "passage": "I dag er det koldt. Det regner, og vinden blæser. Jeg tager en varm jakke på.",
       "question": "Hvordan er vejret i dag?",
-      "options": ["Varmt og solrigt", "Koldt og regnfuldt", "Varmt og tørt", "Solrigt"]
+      "options": [
+        "Koldt og regnfuldt",
+        "Varmt og solrigt",
+        "Varmt og tørt",
+        "Solrigt"
+      ]
     },
-    "answer": { "type": "MCQ_SINGLE", "correctIndex": 1 },
+    "answer": {
+      "type": "MCQ_SINGLE",
+      "correctIndex": 0
+    },
     "maxPoints": 1
   },
   {
@@ -74,9 +106,17 @@
     "payload": {
       "passage": "Om morgenen står jeg op klokken syv. Jeg spiser morgenmad og drikker kaffe. Så cykler jeg på arbejde.",
       "question": "Hvad drikker personen om morgenen?",
-      "options": ["Te", "Juice", "Kaffe", "Vand"]
+      "options": [
+        "Te",
+        "Kaffe",
+        "Juice",
+        "Vand"
+      ]
     },
-    "answer": { "type": "MCQ_SINGLE", "correctIndex": 2 },
+    "answer": {
+      "type": "MCQ_SINGLE",
+      "correctIndex": 1
+    },
     "maxPoints": 1
   },
   {
@@ -90,9 +130,17 @@
     "payload": {
       "passage": "Maria arbejder på et hospital. Hun er sygeplejerske. Hun arbejder ofte om natten.",
       "question": "Hvad er Marias job?",
-      "options": ["Læge", "Sygeplejerske", "Lærer", "Kok"]
+      "options": [
+        "Sygeplejerske",
+        "Læge",
+        "Lærer",
+        "Kok"
+      ]
     },
-    "answer": { "type": "MCQ_SINGLE", "correctIndex": 1 },
+    "answer": {
+      "type": "MCQ_SINGLE",
+      "correctIndex": 0
+    },
     "maxPoints": 1
   },
   {
@@ -106,9 +154,15 @@
     "payload": {
       "passage": "Sofie kan godt lide at læse bøger. Hun læser hver aften, før hun sover.",
       "question": "Sofie læser om morgenen.",
-      "options": ["Rigtigt", "Forkert"]
+      "options": [
+        "Forkert",
+        "Rigtigt"
+      ]
     },
-    "answer": { "type": "TRUE_FALSE", "correctIndex": 1 },
+    "answer": {
+      "type": "TRUE_FALSE",
+      "correctIndex": 0
+    },
     "maxPoints": 1
   },
   {
@@ -122,9 +176,15 @@
     "payload": {
       "passage": "Familien Hansen bor i et stort hus. Huset har en have med mange blomster.",
       "question": "Familien Hansen har en have.",
-      "options": ["Rigtigt", "Forkert"]
+      "options": [
+        "Rigtigt",
+        "Forkert"
+      ]
     },
-    "answer": { "type": "TRUE_FALSE", "correctIndex": 0 },
+    "answer": {
+      "type": "TRUE_FALSE",
+      "correctIndex": 0
+    },
     "maxPoints": 1
   },
   {
@@ -138,9 +198,15 @@
     "payload": {
       "passage": "Jonas tager bussen til skole hver dag. Bussen kommer klokken otte.",
       "question": "Jonas cykler til skole.",
-      "options": ["Rigtigt", "Forkert"]
+      "options": [
+        "Rigtigt",
+        "Forkert"
+      ]
     },
-    "answer": { "type": "TRUE_FALSE", "correctIndex": 1 },
+    "answer": {
+      "type": "TRUE_FALSE",
+      "correctIndex": 1
+    },
     "maxPoints": 1
   },
   {
@@ -154,10 +220,34 @@
     "payload": {
       "passage": "To personer taler sammen for første gang.",
       "instructions": "Match spørgsmål med det rigtige svar.",
-      "left": ["Hvad hedder du?", "Hvor gammel er du?", "Hvor bor du?"],
-      "right": ["Jeg er tredive år.", "Jeg bor i Aarhus.", "Jeg hedder Mette."]
+      "left": [
+        "Hvad hedder du?",
+        "Hvor gammel er du?",
+        "Hvor bor du?"
+      ],
+      "right": [
+        "Jeg bor i Aarhus.",
+        "Jeg hedder Mette.",
+        "Jeg er tredive år."
+      ]
     },
-    "answer": { "type": "MATCHING", "pairs": [[0, 2], [1, 0], [2, 1]] },
+    "answer": {
+      "type": "MATCHING",
+      "pairs": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          0
+        ]
+      ]
+    },
     "maxPoints": 3
   },
   {
@@ -171,10 +261,34 @@
     "payload": {
       "passage": "Læs de danske ord.",
       "instructions": "Match det danske ord med den engelske betydning.",
-      "left": ["hund", "kat", "fugl"],
-      "right": ["cat", "bird", "dog"]
+      "left": [
+        "hund",
+        "kat",
+        "fugl"
+      ],
+      "right": [
+        "bird",
+        "dog",
+        "cat"
+      ]
     },
-    "answer": { "type": "MATCHING", "pairs": [[0, 2], [1, 0], [2, 1]] },
+    "answer": {
+      "type": "MATCHING",
+      "pairs": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          0
+        ]
+      ]
+    },
     "maxPoints": 3
   },
   {
@@ -188,10 +302,34 @@
     "payload": {
       "passage": "Tænk på, hvad man gør de forskellige steder.",
       "instructions": "Match stedet med aktiviteten.",
-      "left": ["supermarked", "skole", "restaurant"],
-      "right": ["Man spiser mad.", "Man køber mad.", "Man lærer."]
+      "left": [
+        "supermarked",
+        "skole",
+        "restaurant"
+      ],
+      "right": [
+        "Man lærer.",
+        "Man spiser mad.",
+        "Man køber mad."
+      ]
     },
-    "answer": { "type": "MATCHING", "pairs": [[0, 1], [1, 2], [2, 0]] },
+    "answer": {
+      "type": "MATCHING",
+      "pairs": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ]
+      ]
+    },
     "maxPoints": 3
   },
   {
@@ -205,11 +343,37 @@
     "payload": {
       "passage": "Jeg {{1}} Anna. Jeg {{2}} i Danmark.",
       "gaps": [
-        { "id": 1, "options": ["hedder", "bor", "spiser"] },
-        { "id": 2, "options": ["hedder", "bor", "drikker"] }
+        {
+          "id": 1,
+          "options": [
+            "hedder",
+            "bor",
+            "spiser"
+          ]
+        },
+        {
+          "id": 2,
+          "options": [
+            "hedder",
+            "drikker",
+            "bor"
+          ]
+        }
       ]
     },
-    "answer": { "type": "CLOZE", "correct": [{ "id": 1, "index": 0 }, { "id": 2, "index": 1 }] },
+    "answer": {
+      "type": "CLOZE",
+      "correct": [
+        {
+          "id": 1,
+          "index": 0
+        },
+        {
+          "id": 2,
+          "index": 2
+        }
+      ]
+    },
     "maxPoints": 2
   },
   {
@@ -223,11 +387,37 @@
     "payload": {
       "passage": "Om morgenen drikker jeg {{1}}. Om aftenen spiser jeg {{2}}.",
       "gaps": [
-        { "id": 1, "options": ["kaffe", "sko", "bord"] },
-        { "id": 2, "options": ["aftensmad", "cykel", "lampe"] }
+        {
+          "id": 1,
+          "options": [
+            "sko",
+            "kaffe",
+            "bord"
+          ]
+        },
+        {
+          "id": 2,
+          "options": [
+            "aftensmad",
+            "cykel",
+            "lampe"
+          ]
+        }
       ]
     },
-    "answer": { "type": "CLOZE", "correct": [{ "id": 1, "index": 0 }, { "id": 2, "index": 0 }] },
+    "answer": {
+      "type": "CLOZE",
+      "correct": [
+        {
+          "id": 1,
+          "index": 1
+        },
+        {
+          "id": 2,
+          "index": 0
+        }
+      ]
+    },
     "maxPoints": 2
   },
   {
@@ -241,11 +431,37 @@
     "payload": {
       "passage": "Det er {{1}} i dag, så jeg tager en jakke på. Jeg går en {{2}} i parken.",
       "gaps": [
-        { "id": 1, "options": ["varmt", "koldt", "stort"] },
-        { "id": 2, "options": ["tur", "bil", "bog"] }
+        {
+          "id": 1,
+          "options": [
+            "varmt",
+            "koldt",
+            "stort"
+          ]
+        },
+        {
+          "id": 2,
+          "options": [
+            "bil",
+            "bog",
+            "tur"
+          ]
+        }
       ]
     },
-    "answer": { "type": "CLOZE", "correct": [{ "id": 1, "index": 1 }, { "id": 2, "index": 0 }] },
+    "answer": {
+      "type": "CLOZE",
+      "correct": [
+        {
+          "id": 1,
+          "index": 1
+        },
+        {
+          "id": 2,
+          "index": 2
+        }
+      ]
+    },
     "maxPoints": 2
   }
 ]

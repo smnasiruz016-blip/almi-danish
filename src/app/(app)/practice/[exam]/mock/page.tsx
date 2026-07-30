@@ -8,7 +8,7 @@ import { requireUser } from "@/lib/auth";
 import { hasPaidAccess } from "@/lib/billing/plans";
 import { examBySlug } from "@/lib/dk/registry";
 import { isFreeSkill } from "@/lib/dk/types";
-import { pickPractice } from "@/lib/dk/items";
+import { pickPractice, stableItemId } from "@/lib/dk/items";
 import { MockRunner, type MockSection } from "@/components/dk/MockRunner";
 
 export default async function MockPage({
@@ -34,6 +34,7 @@ export default async function MockPage({
       skill,
       objective,
       items: items.map((it) => ({
+        id: stableItemId(it),
         title: it.title,
         prompt: it.prompt,
         exam: it.exam,
@@ -41,7 +42,6 @@ export default async function MockPage({
         taskType: it.taskType,
         cefr: it.cefr,
         payload: it.payload,
-        answer: it.answer,
         maxPoints: it.maxPoints,
       })),
     };

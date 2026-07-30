@@ -14,7 +14,10 @@
         "Uses simple present-tense sentences (jeg hedder, jeg er, jeg bor)",
         "Spelling and word order are mostly correct"
       ],
-      "charBand": { "min": 40, "max": 120 }
+      "charBand": {
+        "min": 40,
+        "max": 120
+      }
     },
     "answer": null,
     "maxPoints": 10
@@ -34,7 +37,10 @@
         "Uses correct nouns and simple connecting words (og)",
         "Message is clear and easy to understand"
       ],
-      "charBand": { "min": 40, "max": 120 }
+      "charBand": {
+        "min": 40,
+        "max": 120
+      }
     },
     "answer": null,
     "maxPoints": 10
@@ -54,7 +60,10 @@
         "Uses possessive words correctly (min, mit)",
         "Sentences are complete and understandable"
       ],
-      "charBand": { "min": 40, "max": 120 }
+      "charBand": {
+        "min": 40,
+        "max": 120
+      }
     },
     "answer": null,
     "maxPoints": 10
@@ -74,7 +83,10 @@
         "Uses a polite phrase (vil du, kan du)",
         "Message reads naturally for a friend"
       ],
-      "charBand": { "min": 40, "max": 120 }
+      "charBand": {
+        "min": 40,
+        "max": 120
+      }
     },
     "answer": null,
     "maxPoints": 10
@@ -94,7 +106,10 @@
         "Uses time words (om morgenen, klokken, så)",
         "Verbs are used correctly in the present tense"
       ],
-      "charBand": { "min": 40, "max": 120 }
+      "charBand": {
+        "min": 40,
+        "max": 120
+      }
     },
     "answer": null,
     "maxPoints": 10
@@ -114,7 +129,10 @@
         "Mentions a piece of clothing suitable for the weather",
         "Sentences are grammatically simple and clear"
       ],
-      "charBand": { "min": 40, "max": 120 }
+      "charBand": {
+        "min": 40,
+        "max": 120
+      }
     },
     "answer": null,
     "maxPoints": 10
@@ -134,7 +152,10 @@
         "Uses a greeting and a closing (Hej, Venlig hilsen)",
         "Message is polite and understandable"
       ],
-      "charBand": { "min": 40, "max": 120 }
+      "charBand": {
+        "min": 40,
+        "max": 120
+      }
     },
     "answer": null,
     "maxPoints": 10
@@ -154,7 +175,10 @@
         "Uses there-is/there-are structures (der er)",
         "Includes a few descriptive words (stort, lille, nyt)"
       ],
-      "charBand": { "min": 40, "max": 120 }
+      "charBand": {
+        "min": 40,
+        "max": 120
+      }
     },
     "answer": null,
     "maxPoints": 10

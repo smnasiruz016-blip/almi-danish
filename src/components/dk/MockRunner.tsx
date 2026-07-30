@@ -83,11 +83,7 @@ export function MockRunner({
     for (const f of flat) {
       if (f.objective) {
         const g = await submitAttempt({
-          exam: f.item.exam,
-          skill: f.item.skill,
-          taskType: f.item.taskType,
-          answer: f.item.answer,
-          maxPoints: f.item.maxPoints,
+          itemId: f.item.id,
           response: responses[f.index] ?? null,
         });
         const points = g?.points ?? 0;
@@ -101,9 +97,7 @@ export function MockRunner({
         }
         // Persist the productive attempt (best-effort, gated server-side).
         await submitAttempt({
-          exam: f.item.exam,
-          skill: f.item.skill,
-          taskType: f.item.taskType,
+          itemId: f.item.id,
           response: { text: texts[f.index] ?? "" },
           selfScore: r ?? null,
         });

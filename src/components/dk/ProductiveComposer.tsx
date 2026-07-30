@@ -89,16 +89,10 @@ export function ProductiveComposer({
     if (aiBusy || saved || !canGrade) return;
     setAiBusy(true);
     setAiError(null);
-    const outcome = await gradeProductive({
-      exam: item.exam,
-      skill: item.skill,
-      taskType: item.taskType,
-      cefr: item.cefr,
-      title: item.title,
-      prompt: item.prompt,
-      criteria: d.criteria,
-      response: text,
-    });
+    // Which task, and what the learner wrote. `d.criteria` is still read here — but
+    // only to DISPLAY the criteria. It is no longer sent: the grader reads them off the
+    // authored item, so what is shown and what is marked cannot drift apart.
+    const outcome = await gradeProductive({ itemId: item.id, response: text });
     setAiBusy(false);
     if (outcome.status === "graded") {
       setAi(outcome.feedback);
@@ -115,9 +109,7 @@ export function ProductiveComposer({
     if (saved || busy || rating === null) return;
     setBusy(true);
     await submitAttempt({
-      exam: item.exam,
-      skill: item.skill,
-      taskType: item.taskType,
+      itemId: item.id,
       response: { text },
       selfScore: rating,
     });

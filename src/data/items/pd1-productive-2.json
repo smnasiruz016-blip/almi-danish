@@ -15,7 +15,10 @@
         "Makes one simple polite request using 'Kan du...?'",
         "Uses correct present-tense verbs at A1-A2 level"
       ],
-      "charBand": { "min": 40, "max": 120 }
+      "charBand": {
+        "min": 40,
+        "max": 120
+      }
     },
     "answer": null,
     "maxPoints": 10
@@ -36,7 +39,10 @@
         "Ends with one full sentence about book preferences",
         "Uses 'jeg kan godt lide' correctly"
       ],
-      "charBand": { "min": 40, "max": 120 }
+      "charBand": {
+        "min": 40,
+        "max": 120
+      }
     },
     "answer": null,
     "maxPoints": 10
@@ -57,7 +63,10 @@
         "Makes a simple suggestion (Du kan godt bestille...)",
         "Keeps a warm, informal tone with a friend"
       ],
-      "charBand": { "min": 40, "max": 120 }
+      "charBand": {
+        "min": 40,
+        "max": 120
+      }
     },
     "answer": null,
     "maxPoints": 10
@@ -78,7 +87,10 @@
         "Uses a simple conditional idea (hvis det er billigt)",
         "Spelling of common nouns is close to correct"
       ],
-      "charBand": { "min": 40, "max": 120 }
+      "charBand": {
+        "min": 40,
+        "max": 120
+      }
     },
     "answer": null,
     "maxPoints": 10
@@ -99,7 +111,10 @@
         "Describes one past activity simply",
         "Ends with a friendly sign-off (Kaerlig hilsen)"
       ],
-      "charBand": { "min": 40, "max": 120 }
+      "charBand": {
+        "min": 40,
+        "max": 120
+      }
     },
     "answer": null,
     "maxPoints": 10
@@ -120,7 +135,10 @@
         "Asks one polite question about homework",
         "Closes politely (Venlig hilsen + name)"
       ],
-      "charBand": { "min": 40, "max": 120 }
+      "charBand": {
+        "min": 40,
+        "max": 120
+      }
     },
     "answer": null,
     "maxPoints": 10
@@ -141,7 +159,10 @@
         "Includes a habit with a time (Jeg spiser klokken...)",
         "Sentences stay short and grammatically simple"
       ],
-      "charBand": { "min": 40, "max": 120 }
+      "charBand": {
+        "min": 40,
+        "max": 120
+      }
     },
     "answer": null,
     "maxPoints": 10
