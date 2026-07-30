@@ -10,7 +10,9 @@
     "start": "next start",
     "postinstall": "prisma generate",
     "gate:item-id": "tsx scripts/items/item-id-collision-gate.mts",
-    "gate:answer-distribution": "tsx scripts/items/answer-distribution-gate.mts"
+    "gate:answer-distribution": "tsx scripts/items/answer-distribution-gate.mts",
+    "proof:grade-objective": "tsx scripts/items/grade-authority-offline.mts",
+    "proof:grade-productive": "tsx scripts/items/grade-authority-metered.mts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.91.1",
