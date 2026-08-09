@@ -6,6 +6,12 @@ const SITE_URL = "https://almidanish.almiworld.com";
 // small exam content; #2 request-generator in Observability. Deep per-origin
 // long-tail leaves below; the /study-in-denmark/<subject>, /work-in-denmark/<role>
 // and /exams/<level> hubs plus landing pages stay crawlable.
+//
+// HOLDING 2026-08-09 — these leaves no longer render at all (dynamicParams = false), so this
+// disallow is now belt-and-braces rather than the control. Measured: the Googlebot/Bingbot block
+// below went live 2026-07-28 and almi-danish ISR writes still ROSE from $0.33/day to $0.73/day
+// over the following fortnight. robots.txt is advisory and cannot stop an ISR write; only
+// removing the render path can. Keep both.
 const DEEP_LEAVES = ["/study-in-denmark/*/from/", "/work-in-denmark/*/from/"];
 
 // Heavy crawlers that burn Vercel invocations + ISR writes with ~no SEO upside.

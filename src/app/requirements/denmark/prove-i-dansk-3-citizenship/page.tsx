@@ -3,8 +3,10 @@ import Link from "next/link";
 
 // Honest requirements explainer: what Danish you need for citizenship —
 // Prøve i Dansk 3 at B1–B2 — and how to PREPARE for it. Framed as honest
-// preparation, never as beating or getting around SIRI. ISR.
-export const revalidate = 2592000;
+// preparation, never as beating or getting around SIRI.
+// HOLDING 2026-08-09 — was `2592000` (30-day ISR). No recurring regeneration under holding; the
+// page is static content that only changes on redeploy anyway. Restore `2592000` to reverse.
+export const revalidate = false;
 
 const SITE = "https://almidanish.almiworld.com";
 const PATH = "/requirements/denmark/prove-i-dansk-3-citizenship";
