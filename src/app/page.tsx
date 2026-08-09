@@ -3,8 +3,11 @@ import Link from "next/link";
 import { TRACKS, examsByTrack } from "@/lib/dk/registry";
 import { TestimonialsSection } from "@/components/reviews/TestimonialsSection";
 
-// Re-render hourly so newly approved testimonials appear without a redeploy.
-export const revalidate = 3600;
+// HOLDING 2026-08-09 — was `3600` (re-render hourly so newly approved testimonials appeared
+// without a redeploy). That is a recurring regeneration: ~24 ISR writes/day for one page, every
+// day, forever. Under holding there is no recurring regeneration anywhere; approved testimonials
+// now appear on the next deploy. Restore `3600` to reverse.
+export const revalidate = false;
 
 export const metadata: Metadata = {
   title: {

@@ -5,11 +5,13 @@ import { buildStudyPage } from "@/lib/seo/content";
 import { resolveOriginBlock } from "@/lib/seo/origin-localization";
 import { FunnelPage } from "@/components/seo/FunnelPage";
 
-// ISR on-demand: nothing pre-rendered at build; each URL renders + caches on
-// first request. Cache indefinitely (Localization Standard rule #5) — the axis
-// data only changes on redeploy, which cold-starts the cache. No periodic
-// re-writes (the ISR-Writes cost driver).
-export const dynamicParams = true;
+// HOLDING 2026-08-09 — ISR page-generation frozen. Was on-demand ISR over the ~2.8M taught-study
+// leaf space; each first request rendered + cached, and that write is the cost driver. Blocking
+// these paths in robots.txt did NOT stop it (robots is advisory and the Googlebot/Bingbot block
+// has been live since 2026-07-28 while ISR writes still doubled) — only removing the render path
+// does. Nothing is prerendered and nothing renders on demand, so every URL here 404s.
+// Axis data and templates are untouched. Reverse by restoring `dynamicParams = true`.
+export const dynamicParams = false;
 export const revalidate = false;
 export function generateStaticParams() { return []; }
 
