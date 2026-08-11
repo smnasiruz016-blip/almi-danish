@@ -21,7 +21,7 @@ import { hasPaidAccess } from "@/lib/billing/plans";
 import { prisma } from "@/lib/prisma";
 import { gradeObjective } from "@/lib/dk/grading";
 import { getItemById } from "@/lib/dk/items";
-import { isObjectiveTask, isFreeSkill } from "@/lib/dk/types";
+import { isObjectiveTask, isObjectiveSkill } from "@/lib/dk/types";
 import type { ObjectiveAnswer } from "@/lib/dk/types";
 
 type PaidUser = Parameters<typeof hasPaidAccess>[0] & { id: string };
@@ -58,7 +58,9 @@ export async function gradeAttempt(body: AttemptBody, user: PaidUser): Promise<G
   // gate as well as the scoring, so a client that declared `skill: "READING"` on a
   // productive task used to walk straight through the Pro check.
   const objective = isObjectiveTask(item.taskType);
-  const productive = !objective || !isFreeSkill(item.skill);
+  // Everything is paid now; `productive` only decides whether an AI grader
+  // runs, not whether the user is allowed in.
+  const productive = !objective || !isObjectiveSkill(item.skill);
 
   if (productive && !hasPaidAccess(user)) {
     return { ok: false, status: 402, error: "Productive feedback is a Pro feature" };
