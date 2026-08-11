@@ -73,7 +73,7 @@ const CITIZENSHIP_HEDGE =
 const MISSION_LINE =
   "25% of AlmiDanish proceeds fund the Shamool Foundation's social mission.";
 const CTA_LINE =
-  "Reading and Listening practice is free; AI feedback on Writing and Speaking and the full timed mock become available with a 7-day free trial ($12/month after, cancel anytime).";
+  "Reading and Listening practice, AI feedback on Writing and Speaking and the full timed mock become available with a 7-day free trial ($12/month after, cancel anytime).";
 
 function levelForSubject(subjectSlug: string): ExamMeta {
   // Danish-taught study typically asks for roughly B1–B2. We point demanding /
