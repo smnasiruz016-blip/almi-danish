@@ -2,38 +2,26 @@ import type { MetadataRoute } from "next";
 
 const SITE_URL = "https://almidanish.almiworld.com";
 
-// PRIORITY SITE — ~3.3M pSEO leaf space (2.8M taught-study + 0.5M jobs) despite
-// small exam content; #2 request-generator in Observability. Deep per-origin
-// long-tail leaves below; the /study-in-denmark/<subject>, /work-in-denmark/<role>
-// and /exams/<level> hubs plus landing pages stay crawlable.
-//
-// HOLDING 2026-08-09 — these leaves no longer render at all (dynamicParams = false), so this
-// disallow is now belt-and-braces rather than the control. Measured: the Googlebot/Bingbot block
-// below went live 2026-07-28 and almi-danish ISR writes still ROSE from $0.33/day to $0.73/day
-// over the following fortnight. robots.txt is advisory and cannot stop an ISR write; only
-// removing the render path can. Keep both.
-const DEEP_LEAVES = ["/study-in-denmark/*/from/", "/work-in-denmark/*/from/"];
+// Private app surfaces: never useful in a search index.
+const PRIVATE = ["/practice/", "/account", "/admin", "/api/"];
 
-// Heavy crawlers that burn Vercel invocations + ISR writes with ~no SEO upside.
-// robots.txt is advisory — these DO obey it; abusive scrapers need BotID/WAF.
-// Google-Extended = Gemini TRAINING token, NOT search — blocking it is rank-safe.
-const HEAVY_BOTS = [
-  "GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "anthropic-ai",
-  "CCBot", "Bytespider", "Amazonbot", "PerplexityBot", "Google-Extended",
+// AI VISIBILITY IS THE PRODUCT GOAL (owner ruling 27 Oct 2026). No AI crawler — GPTBot, OAI-SearchBot,
+// ChatGPT-User, ClaudeBot, Claude-SearchBot, Claude-User, anthropic-ai, PerplexityBot, Perplexity-User,
+// Google-Extended, CCBot, Amazonbot, Applebot-Extended, Bytespider, Meta-ExternalAgent or similar —
+// may ever be listed here. Only pure SEO-tool scrapers, which bring no visibility, stay blocked.
+//
+// The old programmatic study/jobs leaves are no longer disallowed: they answer 410 Gone (src/proxy.ts)
+// and crawlers must be able to SEE the 410 to drop those URLs.
+const SEO_TOOL_SCRAPERS = [
   "AhrefsBot", "SemrushBot", "MJ12bot", "DotBot", "DataForSeoBot", "PetalBot",
 ];
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      // DEEP_LEAVES applies to Googlebot and Bingbot TOO. Leaving them out was the
-      // hole in the 2026-07-20 crawl-cost fix (#8): `*` was blocked from the leaf
-      // space while the two crawlers most able to walk 3.3M URLs kept full access,
-      // and each first visit to an ungenerated leaf costs one ISR write. almi-danish
-      // billed $58.40 in ISR writes in the 2026-07 cycle with this rule in place.
-      { userAgent: ["Googlebot", "Bingbot"], allow: "/", disallow: ["/practice/", "/account", "/admin", "/api/", ...DEEP_LEAVES] },
-      { userAgent: "*", allow: "/", disallow: ["/practice/", "/account", "/admin", "/api/", ...DEEP_LEAVES], crawlDelay: 10 },
-      { userAgent: HEAVY_BOTS, disallow: "/" },
+      { userAgent: ["Googlebot", "Bingbot"], allow: "/", disallow: PRIVATE },
+      { userAgent: "*", allow: "/", disallow: PRIVATE, crawlDelay: 10 },
+      { userAgent: SEO_TOOL_SCRAPERS, disallow: "/" },
     ],
     sitemap: `${SITE_URL}/sitemap-index.xml`,
   };
