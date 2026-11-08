@@ -31,9 +31,11 @@ const attemptDelegate = `${X.charAt(0).toLowerCase()}${X.slice(1)}Attempt`;
     assert.match(a, /@@index\(\[itemId\]\)/, "itemId has no index");
     assert.doesNotMatch(strip(block(`${X}Item`)), new RegExp(`${X}Attempt\\[\\]`), `${X}Item still lists attempts`);
   });
-  await t(`A1 migration: a migration drops "${X}Attempt_itemId_fkey"`, () => {
-    const dir = join(ROOT, "prisma/migrations");
-    const sql = readdirSync(dir).filter((d) => statSync(join(dir, d)).isDirectory()).map((d) => existsSync(join(dir, d, "migration.sql")) ? readFileSync(join(dir, d, "migration.sql"), "utf8") : "").join("\n");
+  // The build runs `prisma migrate deploy`, so the migration is NOT in the PR (a preview build would apply it): it waits for the
+  // owner in _handoffs/rr399-tools/owner-migrations/<repo>/. Either place counts.
+  await t(`A1 migration: a migration (in the repo or waiting for the owner) drops "${X}Attempt_itemId_fkey"`, () => {
+    const dirs = [join(ROOT, "prisma/migrations"), join(ROOT, "..", "_handoffs", "rr399-tools", "owner-migrations", ROOT.split(/[\\/]/).pop()!)].filter((d) => existsSync(d));
+    const sql = dirs.flatMap((dir) => readdirSync(dir).filter((d) => statSync(join(dir, d)).isDirectory()).map((d) => existsSync(join(dir, d, "migration.sql")) ? readFileSync(join(dir, d, "migration.sql"), "utf8") : "")).join("\n");
     assert.match(sql, new RegExp(`ALTER TABLE (IF EXISTS )?"${X}Attempt" DROP CONSTRAINT (IF EXISTS )?"${X}Attempt_itemId_fkey"`));
   });
   await t(`A1 code: every ${attemptDelegate}.create is followed by a LOUD catch (console.error), never a silent one`, () => {
