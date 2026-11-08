@@ -12,8 +12,13 @@ import { hasPaidAccess } from "./plans";
 import { isTasteActive, isTasteOver, tasteMayUseAi, TASTE_AI_LIMITS, type TasteAiKind, type TasteUser } from "./taste";
 import { freeAiAllowedToday, FREE_AI_BUSY_MESSAGE } from "./free-ai-budget";
 import { TASTE_OVER_TITLE, UNLOCK_LABEL } from "./offer";
+import { claimFreeAi, releaseFreeAi } from "./free-ai-claim";
 
-type AccessUser = Parameters<typeof hasPaidAccess>[0] & TasteUser;
+type AccessUser = Parameters<typeof hasPaidAccess>[0] & TasteUser & { id: string };
+
+/** RR-399 A4: the free AI scoring needs a verified email (the same light check as DET, Goethe and French). Paid users and practice
+ *  without AI never meet this check. */
+export const VERIFY_EMAIL_FOR_FREE_AI = "Please verify your email before your free AI scoring.";
 
 export function hasPracticeAccess(user: AccessUser): boolean {
   return hasPaidAccess(user) || isTasteActive(user);
@@ -27,22 +32,35 @@ export function lockedCopy(user: TasteUser, now: number = Date.now()): { title: 
   return { title: "Unlock everything", /* RR-397: an account with no free 48 hours (it subscribed or was comped before) is never offered free time it cannot get */ line: "$12/month. Cancel anytime.", cta: UNLOCK_LABEL, href: "/pricing" };
 }
 
-export type AiGateResult = { ok: true; free: boolean } | { ok: false; status: 402; body: { ok: false; error: string; upgradeUrl: string; reason: string } };
+/** `release` gives the free use back: a route calls it when the AI call failed or threw, so a failed scoring does not use it up. */
+export type AiGateResult =
+  | { ok: true; free: boolean; release: () => Promise<void> }
+  | { ok: false; status: 402 | 403; body: { ok: false; error: string; upgradeUrl: string; reason: string } };
+
+const NOTHING_TO_RELEASE = async () => {};
 
 /** May this user receive ONE AI scoring of `kind` now? `countUsed` returns how many AI scorings of this kind the account already
  *  RECEIVED (scored attempts, not clicks); it is only called for a free account inside its 48 hours. */
 export async function aiGate(user: AccessUser, kind: TasteAiKind, countUsed: () => Promise<number>, now: number = Date.now()): Promise<AiGateResult> {
-  if (hasPaidAccess(user)) return { ok: true, free: false };
+  if (hasPaidAccess(user)) return { ok: true, free: false, release: NOTHING_TO_RELEASE };
   const shut = (reason: string, error: string): AiGateResult => ({ ok: false, status: 402, body: { ok: false, error, upgradeUrl: "/pricing", reason } });
   if (!isTasteActive(user, now)) {
     const c = lockedCopy(user, now);
     return shut(isTasteOver(user, now) ? "OVER" : "NO_TASTE", `${c.title}. ${c.line}`);
   }
-  const usedOfKind = await countUsed();
-  if (usedOfKind >= TASTE_AI_LIMITS[kind]) {
-    return shut("USED", `Your free 48 hours include ${TASTE_AI_LIMITS[kind]} AI-scored ${KIND_WORD[kind]}, and you have used it. ${UNLOCK_LABEL} for unlimited AI feedback.`);
+  // RR-399 A4: a free account with an unverified email is refused here, before anything is counted, reserved or spent.
+  if (user.emailVerified == null) {
+    return { ok: false, status: 403, body: { ok: false, error: VERIFY_EMAIL_FOR_FREE_AI, upgradeUrl: "/pricing", reason: "EMAIL" } };
   }
+  const usedText = `Your free 48 hours include ${TASTE_AI_LIMITS[kind]} AI-scored ${KIND_WORD[kind]}, and you have used it. ${UNLOCK_LABEL} for unlimited AI feedback.`;
+  const usedOfKind = await countUsed();
+  if (usedOfKind >= TASTE_AI_LIMITS[kind]) return shut("USED", usedText);
   const verdict = tasteMayUseAi({ user, kind, usedOfKind, budgetOk: await freeAiAllowedToday(now), now });
   if (!verdict.ok) return shut(verdict.reason, verdict.reason === "BUDGET" ? FREE_AI_BUSY_MESSAGE : `${lockedCopy(user, now).title}.`);
-  return { ok: true, free: true };
+  // RR-399 A3: the count and the budget said yes; now RESERVE the free use in one insert, so of two requests at the same moment only
+  // one wins. Before the owner's migration the table is missing ("UNAVAILABLE") and the count decision above stands.
+  const claim = await claimFreeAi(user.id, kind);
+  if (claim === "USED") return shut("USED", usedText);
+  if (claim === "RESERVED") return { ok: true, free: true, release: () => releaseFreeAi(user.id, kind) };
+  return { ok: true, free: true, release: NOTHING_TO_RELEASE };
 }
