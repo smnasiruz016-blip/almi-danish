@@ -13,7 +13,11 @@ import { readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 const walk = (d) => readdirSync(d).flatMap((n) => { const f = join(d, n); return statSync(f).isDirectory() ? walk(f) : /route\.ts$/.test(n) ? [f] : []; });
 const AI_ROUTE = existsSync("src/app/api") ? walk("src/app/api").find((f) => /\baiGate\(/.test(readFileSync(f, "utf8"))) : null;
+/* RR-399 A3: the atomic "1 free" (claim test + the free door's call) */
+const claimTest = () => spawnSync(process.platform === "win32" ? "npx.cmd tsx scripts/verify-free-ai-claim.ts" : "npx tsx scripts/verify-free-ai-claim.ts", { encoding: "utf8", shell: true });
 const CASES = [
+  { name: "RR-399: a second claim of the same free use also wins", file: `${DIR}/free-ai-claim.ts`, from: 'if (isUniqueViolation(e)) return "USED";', to: 'return "RESERVED";', run: [claimTest], fail: ["FAIL two requests at the same moment"] },
+  { name: "RR-399: the free door no longer reserves the free use", file: `${DIR}/free-access.ts`, from: "claimFreeAi(", to: "claimFreeAiSkipped(", prepend: 'const claimFreeAiSkipped = async (..._a: unknown[]) => "RESERVED" as const;\n', run: [gate], fail: ["[FAIL] the free door reserves the free use atomically"] },
   ...(AI_ROUTE ? [{ name: "an AI route skips the free door", file: AI_ROUTE, from: "aiGate(", to: "aiGateSkipped(", prepend: "const aiGateSkipped = async (..._a: unknown[]) => ({ ok: true as const, free: true });\n", run: [gate], fail: ["[FAIL] every AI route goes through aiGate()"] }] : []),
   { name: "the free time becomes 72 hours", file: `${DIR}/offer.ts`, from: "export const TASTE_HOURS = 48;", to: "export const TASTE_HOURS = 72;", run: [gate, test], fail: ["[FAIL] the free time is 48 hours", "FAIL a new sign-up gets 48 hours"] },
   { name: "free AI is allowed twice", file: `${DIR}/taste.ts`, from: "TASTE_AI_LIMITS = { WRITING: 1, SPEAKING: 1 }", to: "TASTE_AI_LIMITS = { WRITING: 2, SPEAKING: 1 }", run: [gate, test], fail: ["[FAIL] free 48 hours start at sign-up", "FAIL AI is used once and then blocked"] },
@@ -33,9 +37,9 @@ for (const c of CASES) {
   } finally { writeFileSync(c.file, raw); }
   if (readFileSync(c.file, "utf8") !== raw) throw new Error(`${c.file} NOT restored`);
 }
-const g = gate(), t = test();
+const g = gate(), t = test(), ct = claimTest();
 for (const o of out) console.log(`  [${o.red ? "RED as required" : "STAYED GREEN — BLIND"}] ${o.name}`);
-console.log(`  restored: gate ${g.status === 0 ? "GREEN" : "NOT GREEN"}, test ${t.status === 0 ? "GREEN" : "NOT GREEN"}`);
-const pass = out.every((o) => o.red) && g.status === 0 && t.status === 0;
+console.log(`  restored: gate ${g.status === 0 ? "GREEN" : "NOT GREEN"}, test ${t.status === 0 ? "GREEN" : "NOT GREEN"}, claim test ${ct.status === 0 ? "GREEN" : "NOT GREEN"}`);
+const pass = out.every((o) => o.red) && g.status === 0 && t.status === 0 && ct.status === 0;
 console.log(pass ? `\nSABOTAGE PASS — ${out.length}/${out.length} RED` : "\nSABOTAGE FAIL");
 process.exitCode = pass ? 0 : 1;

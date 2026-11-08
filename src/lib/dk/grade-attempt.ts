@@ -86,8 +86,9 @@ export async function gradeAttempt(body: AttemptBody, user: PaidUser): Promise<G
   }
 
   // Persistence uses the VALIDATED id: by this point it has resolved to a real served
-  // item, so an attempt row cannot record an id the bank does not have. Best-effort —
-  // a database failure must not cost the learner their result.
+  // item, so an attempt row cannot record an id the bank does not have. RR-399 A1:
+  // itemId is a plain id (no foreign key), so this write saves the learner's history.
+  // A database failure is logged loudly and never costs the learner their result.
   try {
     await prisma.danishAttempt.create({
       data: {
@@ -101,8 +102,8 @@ export async function gradeAttempt(body: AttemptBody, user: PaidUser): Promise<G
         submittedAt: new Date(),
       },
     });
-  } catch {
-    // attempts are optional this pass
+  } catch (e) {
+    console.error("[dk/submit] ATTEMPT NOT SAVED", { userId: user.id, itemId, error: e instanceof Error ? e.message : String(e) });
   }
 
   return { ok: true, points, maxPoints, correct, selfScore, correctAnswer: objective ? item.answer : null };

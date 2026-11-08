@@ -147,18 +147,21 @@ export async function POST(req: Request): Promise<NextResponse> {
       success: false,
       errorMessage: e instanceof Error ? e.message : String(e),
     });
+    // RR-399 A3: the learner received nothing, so the free use is given back.
+    await gate.release();
     // Fall back to self-rating rather than 500 on a transient model error.
     return NextResponse.json({ ok: true, available: false });
   }
 
   if (!feedback) {
+    await gate.release(); // RR-399 A3: no usable feedback reached the learner
     return NextResponse.json({ ok: true, available: false });
   }
 
   // Persistence uses the VALIDATED id, not a raw body field: by this point itemId has
   // resolved to a real served item, so the attempt row cannot record an id the bank
-  // does not have. (Under the old shape the client never sent one at all, so this
-  // branch was dead code and no productive attempt was ever recorded.)
+  // does not have. RR-399 A1: itemId is a plain id (no foreign key), so this write now
+  // saves. A failure is logged loudly; it never costs the learner the feedback.
   try {
     await prisma.danishAttempt.create({
       data: {
@@ -171,8 +174,8 @@ export async function POST(req: Request): Promise<NextResponse> {
         submittedAt: new Date(),
       },
     });
-  } catch {
-    // ignore — attempts are optional this pass
+  } catch (e) {
+    console.error("[dk/grade] ATTEMPT NOT SAVED", { userId: user.id, itemId, error: e instanceof Error ? e.message : String(e) });
   }
 
   return NextResponse.json({ ok: true, available: true, ...feedback });
