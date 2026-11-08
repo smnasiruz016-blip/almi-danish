@@ -37,6 +37,7 @@ const SCAN_EXT = /\.(ts|tsx|js|mjs|json|prisma|css|md)$/;
 
 const ALLOWLIST = new Map([
   ["src/lib/nav/family.ts", "links to sibling AlmiWorld products by name"],
+  ["src/lib/almiworld-family.ts", "RR-398: the generated AlmiWorld family kit links to sibling AlmiWorld products by name"],
   ["scripts/seo/fork-hygiene-gate.mjs", "documents the banned nouns"],
   // REAL-WORLD ORIGIN DATA, not authored copy. universities.json lists institutions
   // worldwide as ORIGIN references — a student really can move from the University of
