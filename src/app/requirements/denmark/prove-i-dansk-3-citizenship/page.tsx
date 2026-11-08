@@ -137,7 +137,7 @@ export default function Page() {
           >
             Try free for 48 hours
           </Link>
-          <p className="mt-3 text-xs text-almi-text-muted">$12/month after the trial · cancel anytime</p>
+          <p className="mt-3 text-xs text-almi-text-muted">No card · then $12/month · cancel anytime</p>
         </section>
 
         <section className="mt-10 rounded-2xl border border-almi-accent/40 bg-almi-accent/10 p-5">

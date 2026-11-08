@@ -18,6 +18,7 @@
 // client flag — a flag is just another thing the browser gets to choose.
 
 import { hasPaidAccess } from "@/lib/billing/plans";
+import { hasPracticeAccess, lockedCopy } from "@/lib/billing/free-access";
 import { prisma } from "@/lib/prisma";
 import { gradeObjective } from "@/lib/dk/grading";
 import { getItemById } from "@/lib/dk/items";
@@ -60,8 +61,11 @@ export async function gradeAttempt(body: AttemptBody, user: PaidUser): Promise<G
   const objective = isObjectiveTask(item.taskType);
   const productive = !objective || !isFreeSkill(item.skill);
 
-  if (productive && !hasPaidAccess(user)) {
-    return { ok: false, status: 402, error: "Productive feedback is a Pro feature" };
+  // RR-397: saving a productive answer with the learner's OWN rating uses no AI, so it is open to paid users and inside the
+  // free 48 hours (no card). AI feedback has its own door (aiGate in /api/dk/grade). Reading/Listening stay free, as before.
+  if (productive && !hasPracticeAccess(user)) {
+    const c = lockedCopy(user);
+    return { ok: false, status: 402, error: `${c.title}. ${c.line}` };
   }
 
   let points = 0;

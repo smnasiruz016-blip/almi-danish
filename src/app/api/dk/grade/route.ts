@@ -9,7 +9,7 @@
 
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth";
-import { hasPaidAccess } from "@/lib/billing/plans";
+import { aiGate, hasPracticeAccess, lockedCopy } from "@/lib/billing/free-access";
 import { prisma } from "@/lib/prisma";
 import { getAnthropicClient, recordCost } from "@/lib/ai/anthropic-client";
 import { MODELS } from "@/lib/ai/models";
@@ -40,6 +40,12 @@ interface GradeBody {
   response?: string;
 }
 
+/** RR-397: the cost-ledger feature of this grader, per skill, so a free account's one Writing and one Speaking can be counted
+ *  apart. (Before RR-397 both were logged as "dk.grade.productive"; free accounts had no AI then, so no free row is lost.) */
+function gradeFeature(kind: "WRITING" | "SPEAKING"): string {
+  return `dk.grade.productive.${kind.toLowerCase()}`;
+}
+
 function keyAvailable(): boolean {
   const k = process.env.ANTHROPIC_API_KEY;
   return !!k && k.length >= 20 && k !== "TODO_FOUNDER_PROVIDES";
@@ -51,10 +57,12 @@ export async function POST(req: Request): Promise<NextResponse> {
     return NextResponse.json({ ok: false, error: "Not authenticated" }, { status: 401 });
   }
 
-  // Productive AI feedback is the paid value (owner + comp bypass live inside).
-  if (!hasPaidAccess(user)) {
+  // RR-397: a learner who is neither paid nor inside the free 48 hours is refused here, before the body is read.
+  // The one-per-kind rule and today's free-AI budget are checked below, once the item (and so Writing or Speaking) is known.
+  if (!hasPracticeAccess(user)) {
+    const c = lockedCopy(user);
     return NextResponse.json(
-      { ok: false, error: "AI feedback is a Pro feature" },
+      { ok: false, error: `${c.title}. ${c.line}`, upgradeUrl: "/pricing" },
       { status: 402 },
     );
   }
@@ -92,6 +100,16 @@ export async function POST(req: Request): Promise<NextResponse> {
     return NextResponse.json({ ok: false, error: "Unknown item" }, { status: 404 });
   }
 
+  // RR-397: paid users as before (owner + comp bypass live inside hasPaidAccess); a free account (48 hours, no card) gets ONE
+  // AI-scored Writing and ONE AI-scored Speaking, within today's free-AI budget. "Used" = AI scorings this account already
+  // RECEIVED of this kind: the successful cost rows of this grader for that skill (written only after the model answered).
+  const kind = item.skill === "SPEAKING" ? "SPEAKING" : "WRITING";
+  const feature = gradeFeature(kind);
+  const gate = await aiGate(user, kind, () =>
+    prisma.aICostLedger.count({ where: { userId: user.id, feature, success: true } }),
+  );
+  if (!gate.ok) return NextResponse.json(gate.body, { status: gate.status });
+
   const { system, user: userMsg } = buildGradePrompt(item, response);
 
   let feedback: AiFeedback | null = null;
@@ -107,7 +125,7 @@ export async function POST(req: Request): Promise<NextResponse> {
 
     await recordCost({
       userId: user.id,
-      feature: "dk.grade.productive",
+      feature,
       model: MODELS.SONNET,
       usage: {
         inputTokens: msg.usage.input_tokens,
@@ -123,7 +141,7 @@ export async function POST(req: Request): Promise<NextResponse> {
   } catch (e) {
     await recordCost({
       userId: user.id,
-      feature: "dk.grade.productive",
+      feature,
       model: MODELS.SONNET,
       usage: { inputTokens: 0, outputTokens: 0 },
       success: false,
