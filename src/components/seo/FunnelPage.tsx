@@ -55,7 +55,7 @@ export function FunnelPage({ page }: { page: SeoPage }) {
           >
             Try free for 48 hours
           </Link>
-          <p className="mt-3 text-xs text-almi-text-muted">$12/month after the trial · cancel anytime · {MISSION_LINE}</p>
+          <p className="mt-3 text-xs text-almi-text-muted">No card · then $12/month · cancel anytime · {MISSION_LINE}</p>
         </section>
 
         {/* FAQ */}

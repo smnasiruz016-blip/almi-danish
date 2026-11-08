@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: "%s · AlmiDanish",
   },
   description:
-    "Practise the Danish exams — Prøve i Dansk 1, 2 and 3, Studieprøven, and the Indfødsretsprøven and Medborgerskabsprøven knowledge tests — with honest per-skill readiness estimates and AI feedback. Try free for 48 hours, then $12/month. Original material, never copied from official exam papers. Confirm residency and citizenship rules with SIRI. Part of the AlmiWorld family.",
+    "Practise the Danish exams — Prøve i Dansk 1, 2 and 3, Studieprøven, and the Indfødsretsprøven and Medborgerskabsprøven knowledge tests — with honest per-skill readiness estimates and AI feedback. Try free for 48 hours, no card. Then $12/month. Original material, never copied from official exam papers. Confirm residency and citizenship rules with SIRI. Part of the AlmiWorld family.",
   applicationName: "AlmiDanish",
   authors: [{ name: "AlmiWorld" }],
   keywords: ["Prøve i Dansk", "Prøve i Dansk 3", "Danish citizenship test", "Indfødsretsprøven", "Medborgerskabsprøven", "Studieprøven", "learn Danish", "Danish exam practice", "permanent residence Denmark", "AlmiDanish", "AlmiWorld"],

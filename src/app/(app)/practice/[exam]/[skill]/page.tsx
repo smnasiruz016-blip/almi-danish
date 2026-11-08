@@ -3,9 +3,10 @@
 // practice set, and renders the objective runner or the productive composer.
 
 import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { requireUser } from "@/lib/auth";
-import { hasPaidAccess } from "@/lib/billing/plans";
+import { hasPracticeAccess } from "@/lib/billing/free-access";
+import { FreeTimeBanner } from "@/components/FreeTimeBanner";
 import { examBySlug, SKILL_LABELS } from "@/lib/dk/registry";
 import { isFreeSkill } from "@/lib/dk/types";
 import type { DanishSkill } from "@/lib/dk/types";
@@ -29,15 +30,14 @@ export default async function SkillRunnerPage({
   ) as DanishSkill | undefined;
   if (!skill) notFound();
 
-  // SKILL-SPLIT GUARD: objective skills (Reading/Listening) are free to taste;
-  // productive skills (Writing/Speaking) require paid access.
-  if (!isFreeSkill(skill) && !hasPaidAccess(user)) {
-    redirect("/account");
-  }
-
+  // SKILL-SPLIT GUARD: objective skills (Reading/Listening) are free to taste, as before;
+  // RR-397: productive skills (Writing/Speaking) are open to paid users and inside the free 48 hours (no card), with ONE
+  // AI-scored answer of each kind in that time. Outside it the page says so honestly and offers the unlock.
   const label = SKILL_LABELS[skill];
   const objective = isFreeSkill(skill);
-  const items = pickPractice(exam.exam, skill, objective ? 8 : 4);
+  const locked = !objective && !hasPracticeAccess(user);
+  const items = locked ? [] : pickPractice(exam.exam, skill, objective ? 8 : 4);
+  const aiKind = skill === "WRITING" || skill === "SPEAKING" ? skill : undefined;
 
   return (
     <div className="mx-auto max-w-3xl space-y-6">
@@ -55,7 +55,9 @@ export default async function SkillRunnerPage({
         <p className="mt-1 text-sm text-almi-text-muted">{label.da}</p>
       </header>
 
-      {items.length === 0 ? (
+      {!objective && <FreeTimeBanner user={user} ai={aiKind} />}
+
+      {locked ? null : items.length === 0 ? (
         <div className="rounded-2xl border border-almi-accent/40 bg-almi-accent/10 px-4 py-6 text-sm text-almi-ink">
           No practice items are available for this skill yet. Content is being added — check back
           soon.

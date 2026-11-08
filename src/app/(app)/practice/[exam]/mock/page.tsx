@@ -22,7 +22,7 @@ export default async function MockPage({
   const exam = examBySlug(examSlug);
   if (!exam) notFound();
 
-  // The full timed mock is always Pro — no free taste.
+  // The full timed mock is always Pro — no free taste. // RR-397: paid only (not part of the free 48 hours, as AlmiOET)
   if (!hasPaidAccess(user)) {
     redirect("/account");
   }
